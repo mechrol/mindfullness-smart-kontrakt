@@ -64,10 +64,8 @@ export default function App() {
 
   const handleDone = useCallback((id) => {
     markFactorDone(id);
-    // Auto-advance to next unimplemented factor
   }, [markFactorDone]);
 
-  // Auto-advance when no active factor and there's a next one
   useEffect(() => {
     if (!activeFactorId && nextFactor) {
       // Don't auto-advance if user explicitly deselected; just show the hint
@@ -76,77 +74,125 @@ export default function App() {
 
   const activeFactorData = activeModule.factors.find((f) => f.id === activeFactorId);
   const allDone = doneCount === total && total > 0;
+  const currentTheme = THEMES.find((t) => t.id === themeId);
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="app-header__inner">
-          <div className="app-header__top">
-            <h1 className="app-title">Mindfullness</h1>
+    <div className="min-h-screen flex flex-col bg-stone-50">
+      {/* Header */}
+      <header className="bg-gradient-to-br from-green-600 to-green-700 text-white">
+        <div className="max-w-3xl mx-auto px-6 py-8 pb-12">
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h1 className="text-4xl font-extrabold tracking-tight">Mindfullness</h1>
+              <p className="text-green-100 text-lg mt-1 font-light">
+                {currentTheme?.description || 'Długowieczność przez świadome odżywianie i styl życia'}
+              </p>
+            </div>
             <button
-              className="btn btn-sm btn-outline-white"
               onClick={() => setShowSettings(true)}
+              className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-sm transition-all duration-200 text-white text-xl"
               title="Ustawienia"
             >
               ⚙
             </button>
           </div>
-          <p className="app-subtitle">Długowieczność przez świadome odżywianie</p>
         </div>
       </header>
 
-      <main className="app-main">
-        <div className="theme-select">
-          <label className="theme-select__label">Temat:</label>
-          <select
-            className="theme-select__dropdown"
-            value={themeId}
-            onChange={(e) => setThemeId(e.target.value)}
-          >
-            {THEMES.map((t) => (
-              <option key={t.id} value={t.id}>{t.name}</option>
-            ))}
-          </select>
-        </div>
-
-        <ModuleDropdown modules={modules} activeId={activeModuleId} onSelect={selectModule} />
-
-        <section className="module-section">
-          <div className="module-card">
-            <div className="module-card__badge">Moduł {activeModule.id}</div>
-            <h2 className="module-card__title">{activeModule.title}</h2>
-            <p className="module-card__desc">{activeModule.desc}</p>
-            <div className="module-card__count">
-              {doneCount}/{total} czynników wdrożonych
+      {/* Main */}
+      <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 -mt-6 pb-12 w-full">
+        {/* Theme & Module selects */}
+        <div className="bg-white rounded-2xl shadow-lg border border-stone-200 p-5 mb-6 animate-slide-up">
+          {/* Theme selector */}
+          <div className="mb-4">
+            <label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">
+              Temat
+            </label>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              {THEMES.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setThemeId(t.id)}
+                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                    themeId === t.id
+                      ? 'bg-green-600 text-white shadow-md shadow-green-200 scale-105'
+                      : 'bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-800'
+                  }`}
+                >
+                  {t.name}
+                </button>
+              ))}
             </div>
           </div>
 
-          <ProgressBar done={doneCount} total={total} label={`Postęp modułu ${activeModule.id}`} />
+          {/* Module dropdown */}
+          <ModuleDropdown modules={modules} activeId={activeModuleId} onSelect={selectModule} />
+        </div>
 
+        {/* Module card */}
+        <div className="bg-white rounded-2xl shadow-lg border-l-4 border-green-500 p-6 mb-6 animate-slide-up">
+          <span className="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-3">
+            Moduł {activeModule.id}
+          </span>
+          <h2 className="text-2xl font-bold text-stone-800 mb-2">{activeModule.title}</h2>
+          <p className="text-stone-500 leading-relaxed mb-4">{activeModule.desc}</p>
+          <div className="flex items-center gap-2 text-sm text-stone-500">
+            <span className="inline-flex items-center gap-1 bg-stone-100 rounded-full px-3 py-1 font-semibold text-green-700">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {doneCount}/{total} czynników wdrożonych
+            </span>
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <ProgressBar done={doneCount} total={total} label={`Postęp modułu ${activeModule.id}`} />
+
+        {/* Factor dropdown */}
+        <div className="mt-5">
           <FactorDropdown
             factors={activeModule.factors}
             activeId={activeFactorId}
             onSelect={handleFactorSelect}
             factorStates={factorStates}
           />
+        </div>
 
-          {!activeFactorId && nextFactor && (
-            <div className="next-hint" onClick={() => handleFactorSelect(nextFactor.id)}>
+        {/* Next hint */}
+        {!activeFactorId && nextFactor && (
+          <div
+            onClick={() => handleFactorSelect(nextFactor.id)}
+            className="mt-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-5 cursor-pointer hover:shadow-md transition-all duration-200 animate-slide-up"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center animate-pulse-green">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
               <div>
-                <strong>Następny krok:</strong> {nextFactor.name}
+                <strong className="text-green-800">Następny krok:</strong>{' '}
+                <span className="text-green-700">{nextFactor.name}</span>
                 <br />
-                <small>Kliknij, aby rozpocząć →</small>
+                <small className="text-green-500">Kliknij, aby rozpocząć →</small>
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {allDone && (
-            <div className="all-done-banner">
-              <p>Wszystkie 15 czynników wdrożonych! Gratulacje!</p>
-            </div>
-          )}
+        {/* All done */}
+        {allDone && (
+          <div className="mt-5 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl p-6 text-center animate-slide-up shadow-lg">
+            <div className="text-4xl mb-2">🎉</div>
+            <p className="text-xl font-bold">Wszystkie 15 czynników wdrożonych!</p>
+            <p className="text-green-100 mt-1">Gratulacje! Wybierz kolejny moduł, aby kontynuować.</p>
+          </div>
+        )}
 
-          {activeFactorData && (
+        {/* Factor card */}
+        {activeFactorData && (
+          <div className="mt-5 animate-slide-up">
             <FactorCard
               factor={activeFactorData}
               factorState={factorStates[activeFactorData.id] || { status: 'not_started' }}
@@ -157,10 +203,11 @@ export default function App() {
               onContextChange={setUserContext}
               isGenerating={isGenerating}
             />
-          )}
-        </section>
+          </div>
+        )}
       </main>
 
+      {/* Settings modal */}
       {showSettings && (
         <SettingsPanel onClose={() => setShowSettings(false)} />
       )}
