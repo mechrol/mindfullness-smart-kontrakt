@@ -1,100 +1,130 @@
-import useModuleState from "./hooks/useModuleState.js";
-import ModuleDropdown from "./components/ModuleDropdown.jsx";
-import FactorDropdown from "./components/FactorDropdown.jsx";
-import FactorCard from "./components/FactorCard.jsx";
-import RecommendationPanel from "./components/RecommendationPanel.jsx";
-import ProgressBar from "./components/ProgressBar.jsx";
-import { useState } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
+import useModuleState from './hooks/useModuleState.js';
+import { generateRecommendation } from './services/foxoraApi.js';
+import ModuleDropdown from './components/ModuleDropdown.jsx';
+import FactorDropdown from './components/FactorDropdown.jsx';
+import FactorCard from './components/FactorCard.jsx';
+import ProgressBar from './components/ProgressBar.jsx';
+import SettingsPanel from './components/SettingsPanel.jsx';
 
 export default function App() {
-  var _a = useModuleState(),
-      modules = _a.modules, activeModule = _a.activeModule, activeModuleId = _a.activeModuleId,
-      factorStates = _a.factorStates, setFactorStatus = _a.setFactorStatus,
-      reportProblem = _a.reportProblem, selectModule = _a.selectModule,
-      nextFactor = _a.nextFactor, unimplemented = _a.unimplemented,
-      progress = _a.progress, doneCount = _a.doneCount, total = _a.total;
+  const {
+    modules,
+    activeModule,
+    activeModuleId,
+    activeFactorId,
+    factorStates,
+    userContext,
+    settings,
+    nextFactor,
+    doneCount,
+    total,
+    progress,
+    selectModule,
+    selectFactor,
+    markFactorDone,
+    markFactorProblem,
+    setFactorInProgress,
+    setRecommendation,
+    setUserContext,
+    setSettings,
+  } = useModuleState();
 
-  var [activeFactorId, setActiveFactorId] = useState("");
-  var [activeRec, setActiveRec] = useState(null);
-  var [activeFactor, setActiveFactor] = useState(null);
+  const [showSettings, setShowSettings] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  function handleFactorSelect(id) {
-    setActiveFactorId(id);
-    setActiveRec(null);
-    setActiveFactor(null);
-    /* auto-start */
-    var st = factorStates[id];
-    if (!st || st.status === "not_started") {
-      setFactorStatus(id, "in_progress");
+  // Show settings on first load if no API key
+  useEffect(() => {
+    if (!settings.apiKey) {
+      setShowSettings(true);
     }
-  }
+  }, [settings.apiKey]);
 
-  function handleReportProblem(factorId, description) {
-    var result = reportProblem(factorId, description);
-    var factor = activeModule.factors.find(function (f) { return f.id === factorId; });
-    setActiveFactor(factor);
-    setActiveRec(result);
-  }
-
-  function handleMarkDone(factorId) {
-    setFactorStatus(factorId, "done");
-    /* po oznaczeniu jako done — auto-następny */
-    setActiveRec(null);
-    setActiveFactor(null);
-    var remaining = activeModule.factors.filter(function (f) {
-      var s = factorStates[f.id];
-      var fid = f.id;
-      if (fid === factorId) return false; /* pomiń właśnie zakończony */
-      return !s || s.status !== "done";
-    });
-    if (remaining.length > 0) {
-      setActiveFactorId(remaining[0].id);
-      setFactorStatus(remaining[0].id, "in_progress");
-    } else {
-      setActiveFactorId("");
+  const handleFactorSelect = useCallback((id) => {
+    if (!id) return;
+    selectFactor(id);
+    const st = factorStates[id];
+    if (!st || st.status === 'not_started') {
+      setFactorInProgress(id);
     }
-  }
+  }, [selectFactor, setFactorInProgress, factorStates]);
 
-  var activeFactorData = activeFactorId ? activeModule.factors.find(function (f) { return f.id === activeFactorId; }) : null;
+  const handleStart = useCallback((id) => {
+    setFactorInProgress(id);
+  }, [setFactorInProgress]);
+
+  const handleProblem = useCallback(async (id) => {
+    markFactorProblem(id);
+    const factor = activeModule.factors.find((f) => f.id === id);
+    if (!factor) return;
+
+    setIsGenerating(true);
+    try {
+      const rec = await generateRecommendation(factor, userContext, settings);
+      setRecommendation(id, rec);
+    } catch (err) {
+      setRecommendation(id, { error: 'Failed to generate: ' + err.message });
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [activeModule, markFactorProblem, setRecommendation, userContext, settings]);
+
+  const handleDone = useCallback((id) => {
+    markFactorDone(id);
+    // Auto-advance to next unimplemented factor
+  }, [markFactorDone]);
+
+  // Auto-advance when no active factor and there's a next one
+  useEffect(() => {
+    if (!activeFactorId && nextFactor) {
+      // Don't auto-advance if user explicitly deselected; just show the hint
+    }
+  }, [activeFactorId, nextFactor]);
+
+  const activeFactorData = activeModule.factors.find((f) => f.id === activeFactorId);
+  const allDone = doneCount === total && total > 0;
 
   return (
     <div className="app">
       <header className="app-header">
         <div className="app-header__inner">
-          <h1 className="app-title">Mindfullness</h1>
-          <p className="app-subtitle">Akademia Wellness — 100 modułów, krok po kroku</p>
+          <div className="app-header__top">
+            <h1 className="app-title">Mindfullness</h1>
+            <button
+              className="btn btn-sm btn-outline-white"
+              onClick={() => setShowSettings(true)}
+            >
+              Ustawienia
+            </button>
+          </div>
+          <p className="app-subtitle">Długowieczność przez świadome odżywianie</p>
         </div>
       </header>
 
       <main className="app-main">
-        {/* ── Selektor modułu ── */}
         <ModuleDropdown modules={modules} activeId={activeModuleId} onSelect={selectModule} />
 
         <section className="module-section">
           <div className="module-card">
             <div className="module-card__badge">Moduł {activeModule.id}</div>
             <h2 className="module-card__title">{activeModule.title}</h2>
-            <p className="module-card__subtitle">{activeModule.subtitle}</p>
-            <p className="module-card__desc">{activeModule.description}</p>
+            <p className="module-card__desc">{activeModule.desc}</p>
             <div className="module-card__count">
               {doneCount}/{total} czynników wdrożonych
             </div>
           </div>
 
-          <ProgressBar value={progress} label={"Postęp modułu " + activeModule.id} />
+          <ProgressBar done={doneCount} total={total} label={`Postęp modułu ${activeModule.id}`} />
 
-          {/* ── Selektor czynnika (wszystkie) ── */}
           <FactorDropdown
             factors={activeModule.factors}
-            factorStates={factorStates}
+            activeId={activeFactorId}
             onSelect={handleFactorSelect}
-            activeFactorId={activeFactorId}
+            factorStates={factorStates}
           />
 
-          {/* ── Auto-następny podpowiedź ── */}
           {!activeFactorId && nextFactor && (
-            <div className="next-hint" onClick={function () { handleFactorSelect(nextFactor.id); }}>
-              <span className="next-hint__emoji">{nextFactor.emoji}</span>
+            <div className="next-hint" onClick={() => handleFactorSelect(nextFactor.id)}>
               <div>
                 <strong>Następny krok:</strong> {nextFactor.name}
                 <br />
@@ -103,56 +133,36 @@ export default function App() {
             </div>
           )}
 
-          {/* ── Aktywny czynnik — karta interakcji ── */}
-          {activeFactorData && (
-            <div className="factors-grid">
-              <FactorCard
-                factor={activeFactorData}
-                state={factorStates[activeFactorData.id] || { status: "not_started", barrierId: null, note: "" }}
-                onStatusChange={function (fid, status) {
-                  if (status === "done") { handleMarkDone(fid); }
-                  else { setFactorStatus(fid, status); }
-                }}
-                onReportProblem={handleReportProblem}
-                showDoneButton={true}
-              />
+          {allDone && (
+            <div className="all-done-banner">
+              <p>Wszystkie 15 czynników wdrożonych! Gratulacje!</p>
             </div>
           )}
 
-          {/* ── Panel rekomendacji (Metoda) ── */}
-          {activeRec && activeFactor && (
-            <RecommendationPanel
-              factor={activeFactor}
-              recommendation={activeRec}
-              onDismiss={function () { setActiveRec(null); setActiveFactor(null); }}
+          {activeFactorData && (
+            <FactorCard
+              factor={activeFactorData}
+              factorState={factorStates[activeFactorData.id] || { status: 'not_started' }}
+              onStart={handleStart}
+              onProblem={handleProblem}
+              onDone={handleDone}
+              userContext={userContext}
+              onContextChange={setUserContext}
+              isGenerating={isGenerating}
             />
-          )}
-
-          {/* ── Wszystkie czynniki — podgląd statusów ── */}
-          {activeModule.factors.length > 0 && (
-            <details className="all-factors">
-              <summary>Wszystkie czynniki ({activeModule.factors.length})</summary>
-              <div className="factors-grid">
-                {activeModule.factors.map(function (f) {
-                  var st = factorStates[f.id] || { status: "not_started" };
-                  var isActive = f.id === activeFactorId;
-                  return (
-                    <div
-                      key={f.id}
-                      className={"factor-mini" + (isActive ? " factor-mini--active" : "") + (st.status === "done" ? " factor-mini--done" : "")}
-                      onClick={function () { handleFactorSelect(f.id); }}
-                    >
-                      <span className="factor-mini__emoji">{f.emoji}</span>
-                      <span className="factor-mini__name">{f.name}</span>
-                      {st.status === "done" && <span className="factor-mini__check">✓</span>}
-                    </div>
-                  );
-                })}
-              </div>
-            </details>
           )}
         </section>
       </main>
+
+      {showSettings && (
+        <SettingsPanel
+          endpoint={settings.endpoint}
+          apiKey={settings.apiKey}
+          model={settings.model}
+          onSave={setSettings}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
     </div>
   );
 }

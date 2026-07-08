@@ -1,83 +1,104 @@
-import { useState } from "react";
+import React from 'react';
+import RecommendationPanel from './RecommendationPanel.jsx';
 
-const STATUS_BADGES = {
-  not_started: { label: "Do zrobienia", cls: "badge-todo" },
-  in_progress: { label: "W trakcie", cls: "badge-progress" },
-  done: { label: "Wdrożone", cls: "badge-done" },
-  problem: { label: "Problem", cls: "badge-problem" },
+const STATUS_BADGE = {
+  not_started: { label: 'Nie rozpoczęto', cls: 'badge-todo' },
+  in_progress: { label: 'W trakcie', cls: 'badge-progress' },
+  problem: { label: 'Problem — potrzebna metoda', cls: 'badge-problem' },
+  done: { label: 'Wdrożone', cls: 'badge-done' },
 };
 
-export default function FactorCard({ factor, state, onStatusChange, onReportProblem }) {
-  var [showProblem, setShowProblem] = useState(false);
-  var [problemDesc, setProblemDesc] = useState("");
-  var badge = STATUS_BADGES[state.status] || STATUS_BADGES.not_started;
-
-  function handleReport() {
-    if (problemDesc.trim()) {
-      onReportProblem(factor.id, problemDesc);
-      setShowProblem(false);
-    }
-  }
+export default function FactorCard({
+  factor,
+  factorState,
+  onStart,
+  onProblem,
+  onDone,
+  userContext,
+  onContextChange,
+  isGenerating,
+}) {
+  const status = (factorState && factorState.status) || 'not_started';
+  const badge = STATUS_BADGE[status] || STATUS_BADGE.not_started;
+  const rec = factorState && factorState.recommendation;
 
   return (
-    <div className={"factor-card " + (state.status === "problem" ? "factor-card--problem" : "")}>
+    <div className={`factor-card${status === 'problem' ? ' factor-card--problem' : ''}`}>
       <div className="factor-card__header">
-        <span className="factor-card__emoji">{factor.emoji}</span>
         <div className="factor-card__info">
           <h3 className="factor-card__name">{factor.name}</h3>
-          <p className="factor-card__target">{factor.target}</p>
+          <span className={`factor-card__badge ${badge.cls}`}>{badge.label}</span>
         </div>
-        <span className={"factor-card__badge " + badge.cls}>{badge.label}</span>
       </div>
-      <p className="factor-card__desc">{factor.description}</p>
 
-      {state.status === "problem" && state.barrierId !== "default" && (
-        <div className="factor-card__problem-tag">
-          Problem: {state.note || "zgłoszono"}
+      <p className="factor-card__desc">{factor.desc}</p>
+
+      {factor.barriers && factor.barriers.length > 0 && (
+        <div className="factor-card__barriers">
+          <strong>Bariery:</strong>
+          <ul>
+            {factor.barriers.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
         </div>
       )}
 
+      <div className="factor-card__context">
+        <label className="factor-card__context-label">Twój kontekst (opcjonalnie):</label>
+        <textarea
+          className="factor-card__context-input"
+          value={userContext || ''}
+          onChange={(e) => onContextChange(e.target.value)}
+          placeholder="Opisz swoją sytuację, trudności, cele..."
+          rows={3}
+        />
+      </div>
+
       <div className="factor-card__actions">
-        {state.status !== "done" && (
-          <button className="btn btn-sm btn-outline" onClick={function () { onStatusChange(factor.id, "done"); }}>
-            ✓ Oznacz jako wdrożone
+        {(status === 'not_started') && (
+          <>
+            <button className="btn btn-primary" onClick={() => onStart(factor.id)}>
+              Rozpocznij wdrażanie
+            </button>
+            <button className="btn btn-accent" onClick={() => onProblem(factor.id)}>
+              Mam problem — potrzebuję metody
+            </button>
+          </>
+        )}
+
+        {(status === 'in_progress') && (
+          <>
+            <button className="btn btn-primary" onClick={() => onDone(factor.id)}>
+              Oznacz jako wdrożone
+            </button>
+            <button className="btn btn-accent" onClick={() => onProblem(factor.id)}>
+              Mam problem — potrzebuję metody
+            </button>
+          </>
+        )}
+
+        {(status === 'problem') && (
+          <button className="btn btn-primary" onClick={() => onDone(factor.id)}>
+            Oznacz jako wdrożone
           </button>
         )}
-        {state.status === "not_started" && (
-          <button className="btn btn-sm btn-primary" onClick={function () { onStatusChange(factor.id, "in_progress"); }}>
-            ▶ Rozpocznij
-          </button>
-        )}
-        {state.status === "in_progress" && (
-          <button className="btn btn-sm btn-accent" onClick={function () { setShowProblem(true); }}>
-            ⚠ Mam problem
-          </button>
-        )}
-        {state.status === "problem" && (
-          <button className="btn btn-sm btn-outline" onClick={function () { setShowProblem(true); }}>
-            🔄 Zmień opis problemu
-          </button>
+
+        {isGenerating && (
+          <div className="factor-card__generating">
+            <div className="spinner" />
+            <span>Generuję rekomendację metodą MSWRP...</span>
+          </div>
         )}
       </div>
 
-      {showProblem && (
-        <div className="factor-card__problem-form">
-          <p className="form-label">Opisz, co sprawia Ci trudność:</p>
-          <textarea
-            className="form-textarea"
-            rows="2"
-            placeholder="Np. nie lubię smaku, nie mam czasu przygotowywać..."
-            value={problemDesc}
-            onChange={function (e) { setProblemDesc(e.target.value); }}
-          />
-          <div className="form-actions">
-            <button className="btn btn-sm btn-primary" onClick={handleReport}>
-              Pobierz rekomendację
-            </button>
-            <button className="btn btn-sm btn-ghost" onClick={function () { setShowProblem(false); }}>
-              Anuluj
-            </button>
-          </div>
+      {rec && !rec.error && (
+        <RecommendationPanel recommendation={rec} onDone={() => onDone(factor.id)} />
+      )}
+
+      {rec && rec.error && (
+        <div className="factor-card__error">
+          Błąd generowania: {rec.error}
         </div>
       )}
     </div>

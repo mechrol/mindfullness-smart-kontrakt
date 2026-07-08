@@ -1,85 +1,153 @@
-import { useState, useCallback } from "react";
-import { MODULES, correlateProblemToProcedure } from "../data/modules.js";
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { MODULES } from '../data/modules.js';
 
-var STORAGE_KEY = "mindfullness-state";
+const LS_KEYS = {
+  factorStates: 'mindfullness_factorStates',
+  activeModuleId: 'mindfullness_activeModuleId',
+  activeFactorId: 'mindfullness_activeFactorId',
+  userContext: 'mindfullness_userContext',
+  settings: 'mindfullness_settings',
+};
 
-function loadState() {
-  try { var raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; }
-  catch (e) { return {}; }
+function loadFromLS(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
 }
-function saveState(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {} }
+
+function saveToLS(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch { /* quota exceeded — ignore */ }
+}
 
 export default function useModuleState() {
-  var [activeModuleId, setActiveModuleId] = useState(function () {
-    return loadState().activeModuleId || 1;
-  });
+  const [activeModuleId, setActiveModuleIdState] = useState(() =>
+    loadFromLS(LS_KEYS.activeModuleId, 1)
+  );
+  const [activeFactorId, setActiveFactorIdState] = useState(() =>
+    loadFromLS(LS_KEYS.activeFactorId, '')
+  );
+  const [factorStates, setFactorStates] = useState(() =>
+    loadFromLS(LS_KEYS.factorStates, {})
+  );
+  const [userContext, setUserContextState] = useState(() =>
+    loadFromLS(LS_KEYS.userContext, '')
+  );
+  const [settings, setSettingsState] = useState(() =>
+    loadFromLS(LS_KEYS.settings, {
+      endpoint: 'https://api.foxora.ai/v1',
+      apiKey: '',
+      model: 'foxora-default',
+    })
+  );
 
-  var activeModule = MODULES.find(function (m) { return m.id === activeModuleId; }) || MODULES[0];
+  // Persist to localStorage
+  useEffect(() => { saveToLS(LS_KEYS.activeModuleId, activeModuleId); }, [activeModuleId]);
+  useEffect(() => { saveToLS(LS_KEYS.activeFactorId, activeFactorId); }, [activeFactorId]);
+  useEffect(() => { saveToLS(LS_KEYS.factorStates, factorStates); }, [factorStates]);
+  useEffect(() => { saveToLS(LS_KEYS.userContext, userContext); }, [userContext]);
+  useEffect(() => { saveToLS(LS_KEYS.settings, settings); }, [settings]);
 
-  var [factorStates, setFactorStates] = useState(function () {
-    var saved = loadState();
-    var st = saved.factorStates || {};
-    activeModule.factors.forEach(function (f) {
-      if (!st[f.id]) st[f.id] = { status: "not_started", barrierId: null, note: "" };
-    });
-    return st;
-  });
+  const activeModule = useMemo(
+    () => MODULES.find((m) => m.id === activeModuleId) || MODULES[0],
+    [activeModuleId]
+  );
 
-  /* zmiana modułu resetuje stany czynników */
-  var selectModule = useCallback(function (modId) {
-    setActiveModuleId(modId);
-    var mod = MODULES.find(function (m) { return m.id === modId; });
-    var fresh = {};
-    if (mod) mod.factors.forEach(function (f) { fresh[f.id] = { status: "not_started", barrierId: null, note: "" }; });
-    setFactorStates(fresh);
-    saveState({ activeModuleId: modId, factorStates: fresh });
+  const factors = activeModule.factors;
+
+  // Derive unimplemented, nextFactor, progress
+  const { unimplemented, nextFactor, doneCount, total, progress } = useMemo(() => {
+    const total = factors.length;
+    let doneCount = 0;
+    const unimplemented = [];
+    for (const f of factors) {
+      const st = factorStates[f.id];
+      if (st && st.status === 'done') {
+        doneCount++;
+      } else {
+        unimplemented.push(f);
+      }
+    }
+    const nextFactor = unimplemented.length > 0 ? unimplemented[0] : null;
+    return {
+      unimplemented,
+      nextFactor,
+      doneCount,
+      total,
+      progress: total > 0 ? doneCount / total : 0,
+    };
+  }, [factors, factorStates]);
+
+  const selectModule = useCallback((id) => {
+    setActiveModuleIdState(id);
+    setActiveFactorIdState('');
   }, []);
 
-  var setFactorStatus = useCallback(function (factorId, status) {
-    setFactorStates(function (prev) {
-      var next = Object.assign({}, prev, { [factorId]: Object.assign({}, prev[factorId], { status: status }) });
-      saveState({ activeModuleId: activeModuleId, factorStates: next });
-      return next;
-    });
-  }, [activeModuleId]);
+  const selectFactor = useCallback((id) => {
+    setActiveFactorIdState(id);
+  }, []);
 
-  var reportProblem = useCallback(function (factorId, description) {
-    var result = correlateProblemToProcedure(factorId, description);
-    setFactorStates(function (prev) {
-      var next = Object.assign({}, prev, { [factorId]: Object.assign({}, prev[factorId], { status: "problem", barrierId: result.barrierId, note: description }) });
-      saveState({ activeModuleId: activeModuleId, factorStates: next });
-      return next;
-    });
-    return result;
-  }, [activeModuleId]);
+  const markFactorDone = useCallback((factorId) => {
+    setFactorStates((prev) => ({
+      ...prev,
+      [factorId]: { ...prev[factorId], status: 'done' },
+    }));
+    setActiveFactorIdState('');
+  }, []);
 
-  /* następny niezrealizowany czynnik */
-  var nextFactor = activeModule.factors.find(function (f) {
-    var s = factorStates[f.id]; return !s || s.status === "not_started" || s.status === "problem";
-  });
+  const markFactorProblem = useCallback((factorId) => {
+    setFactorStates((prev) => ({
+      ...prev,
+      [factorId]: { ...prev[factorId], status: 'problem' },
+    }));
+  }, []);
 
-  var unimplemented = activeModule.factors.filter(function (f) {
-    var s = factorStates[f.id]; return !s || s.status !== "done";
-  });
+  const setFactorInProgress = useCallback((factorId) => {
+    setFactorStates((prev) => ({
+      ...prev,
+      [factorId]: { ...prev[factorId], status: 'in_progress' },
+    }));
+  }, []);
 
-  var doneCount = activeModule.factors.filter(function (f) {
-    return factorStates[f.id] && factorStates[f.id].status === "done";
-  }).length;
-  var total = activeModule.factors.length;
-  var progress = total ? Math.round(doneCount / total * 100) : 0;
+  const setRecommendation = useCallback((factorId, rec) => {
+    setFactorStates((prev) => ({
+      ...prev,
+      [factorId]: { ...prev[factorId], recommendation: rec },
+    }));
+  }, []);
+
+  const setUserContext = useCallback((text) => {
+    setUserContextState(text);
+  }, []);
+
+  const setSettings = useCallback((s) => {
+    setSettingsState(s);
+  }, []);
 
   return {
     modules: MODULES,
-    activeModule: activeModule,
-    activeModuleId: activeModuleId,
-    factorStates: factorStates,
-    setFactorStatus: setFactorStatus,
-    reportProblem: reportProblem,
-    selectModule: selectModule,
-    nextFactor: nextFactor,
-    unimplemented: unimplemented,
-    progress: progress,
-    doneCount: doneCount,
-    total: total
+    activeModule,
+    activeModuleId,
+    activeFactorId,
+    factorStates,
+    userContext,
+    settings,
+    unimplemented,
+    nextFactor,
+    doneCount,
+    total,
+    progress,
+    selectModule,
+    selectFactor,
+    markFactorDone,
+    markFactorProblem,
+    setFactorInProgress,
+    setRecommendation,
+    setUserContext,
+    setSettings,
   };
 }
