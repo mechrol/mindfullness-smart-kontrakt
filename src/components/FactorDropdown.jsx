@@ -1,17 +1,17 @@
 import React from 'react';
 
 const STATUS_ICONS = {
-  done: '\u2713',
-  in_progress: '\u25B6',
-  problem: '\u26A0',
-  not_started: '\u25CB',
+  done: '✓',
+  in_progress: '▶',
+  problem: '⚠',
+  not_started: '○',
 };
 
 const STATUS_LABELS = {
-  done: 'Wdro\u017Cone',
+  done: 'Wdrożone',
   in_progress: 'W trakcie',
   problem: 'Problem',
-  not_started: 'Nie rozpocz\u0119to',
+  not_started: 'Nie rozpoczęto',
 };
 
 export default function FactorDropdown({ factors, activeId, onSelect, factorStates }) {
@@ -23,7 +23,7 @@ export default function FactorDropdown({ factors, activeId, onSelect, factorStat
   return (
     <div className="factor-dropdown">
       <label className="factor-dropdown__label">
-        Wybierz czynnik do wdro\u017Cenia ({available.length} dost\u0119pnych):
+        Wybierz czynnik do wdrożenia:
       </label>
       <select
         className="factor-dropdown__select"
