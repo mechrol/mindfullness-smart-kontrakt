@@ -1,12 +1,14 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { MODULES } from '../data/modules.js';
+import { getModules } from '../data/modules.js';
 
-const LS_KEYS = {
-  factorStates: 'mindfullness_factorStates',
-  activeModuleId: 'mindfullness_activeModuleId',
-  activeFactorId: 'mindfullness_activeFactorId',
-  userContext: 'mindfullness_userContext',
-};
+function lsKeys(themeId) {
+  return {
+    factorStates: `mindfullness_factorStates_${themeId}`,
+    activeModuleId: `mindfullness_activeModuleId_${themeId}`,
+    activeFactorId: `mindfullness_activeFactorId_${themeId}`,
+    userContext: `mindfullness_userContext_${themeId}`,
+  };
+}
 
 function loadFromLS(key, fallback) {
   try {
@@ -23,32 +25,46 @@ function saveToLS(key, value) {
   } catch { /* quota exceeded — ignore */ }
 }
 
-export default function useModuleState() {
+export default function useModuleState(themeId = 'mindfullness') {
+  const KEYS = lsKeys(themeId);
+  const modules = getModules(themeId);
+
   const [activeModuleId, setActiveModuleIdState] = useState(() =>
-    loadFromLS(LS_KEYS.activeModuleId, 1)
+    loadFromLS(KEYS.activeModuleId, 1)
   );
   const [activeFactorId, setActiveFactorIdState] = useState(() =>
-    loadFromLS(LS_KEYS.activeFactorId, '')
+    loadFromLS(KEYS.activeFactorId, '')
   );
   const [factorStates, setFactorStates] = useState(() =>
-    loadFromLS(LS_KEYS.factorStates, {})
+    loadFromLS(KEYS.factorStates, {})
   );
   const [userContext, setUserContextState] = useState(() =>
-    loadFromLS(LS_KEYS.userContext, '')
+    loadFromLS(KEYS.userContext, '')
   );
+
+  // Reset when theme changes
+  useEffect(() => {
+    if (!modules || modules.length === 0) {
+      setActiveModuleIdState(1);
+      setActiveFactorIdState('');
+      return;
+    }
+    setActiveModuleIdState(1);
+    setActiveFactorIdState('');
+  }, [themeId]);
 
   // Persist to localStorage
-  useEffect(() => { saveToLS(LS_KEYS.activeModuleId, activeModuleId); }, [activeModuleId]);
-  useEffect(() => { saveToLS(LS_KEYS.activeFactorId, activeFactorId); }, [activeFactorId]);
-  useEffect(() => { saveToLS(LS_KEYS.factorStates, factorStates); }, [factorStates]);
-  useEffect(() => { saveToLS(LS_KEYS.userContext, userContext); }, [userContext]);
+  useEffect(() => { saveToLS(KEYS.activeModuleId, activeModuleId); }, [activeModuleId, KEYS.activeModuleId]);
+  useEffect(() => { saveToLS(KEYS.activeFactorId, activeFactorId); }, [activeFactorId, KEYS.activeFactorId]);
+  useEffect(() => { saveToLS(KEYS.factorStates, factorStates); }, [factorStates, KEYS.factorStates]);
+  useEffect(() => { saveToLS(KEYS.userContext, userContext); }, [userContext, KEYS.userContext]);
 
   const activeModule = useMemo(
-    () => MODULES.find((m) => m.id === activeModuleId) || MODULES[0],
-    [activeModuleId]
+    () => modules.find((m) => m.id === activeModuleId) || modules[0],
+    [activeModuleId, modules]
   );
 
-  const factors = activeModule.factors;
+  const factors = activeModule ? activeModule.factors : [];
 
   // Derive unimplemented, nextFactor, progress
   const { unimplemented, nextFactor, doneCount, total, progress } = useMemo(() => {
@@ -116,7 +132,7 @@ export default function useModuleState() {
   }, []);
 
   return {
-    modules: MODULES,
+    modules,
     activeModule,
     activeModuleId,
     activeFactorId,

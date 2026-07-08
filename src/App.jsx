@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useModuleState from './hooks/useModuleState.js';
+import { THEMES } from './data/themes.js';
 import { generateRecommendation } from './services/foxoraApi.js';
 import ModuleDropdown from './components/ModuleDropdown.jsx';
 import FactorDropdown from './components/FactorDropdown.jsx';
@@ -8,6 +9,7 @@ import ProgressBar from './components/ProgressBar.jsx';
 import SettingsPanel from './components/SettingsPanel.jsx';
 
 export default function App() {
+  const [themeId, setThemeId] = useState('mindfullness');
   const {
     modules,
     activeModule,
@@ -26,7 +28,7 @@ export default function App() {
     setFactorInProgress,
     setRecommendation,
     setUserContext,
-  } = useModuleState();
+  } = useModuleState(themeId);
 
   const [showSettings, setShowSettings] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -94,6 +96,19 @@ export default function App() {
       </header>
 
       <main className="app-main">
+        <div className="theme-select">
+          <label className="theme-select__label">Temat:</label>
+          <select
+            className="theme-select__dropdown"
+            value={themeId}
+            onChange={(e) => setThemeId(e.target.value)}
+          >
+            {THEMES.map((t) => (
+              <option key={t.id} value={t.id}>{t.name}</option>
+            ))}
+          </select>
+        </div>
+
         <ModuleDropdown modules={modules} activeId={activeModuleId} onSelect={selectModule} />
 
         <section className="module-section">
