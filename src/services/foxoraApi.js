@@ -1,11 +1,15 @@
 /**
  * Calls Foxora API to generate an MSWRP recommendation for a given factor.
+ * Reads API configuration from localStorage first, then from Vite env vars.
  * @param {{ id: string, name: string, desc: string, barriers: string[] }} factor
  * @param {string} userContext
- * @param {{ endpoint: string, apiKey: string, model: string }} settings
  * @returns {Promise<{zasada: string, procedura: string, pierwszyKrok: string, weryfikacja: string} | null>}
  */
-export async function generateRecommendation(factor, userContext, settings) {
+export async function generateRecommendation(factor, userContext) {
+  const endpoint = localStorage.getItem('foxora_endpoint') || import.meta.env.VITE_FOXORA_ENDPOINT || 'https://api.foxora.ai/v1';
+  const apiKey = localStorage.getItem('foxora_api_key') || import.meta.env.VITE_FOXORA_API_KEY;
+  const model = localStorage.getItem('foxora_model') || import.meta.env.VITE_FOXORA_MODEL || 'foxora-default';
+
   const prompt = `Jesteś ekspertem metody MSWRP (Metoda Specyficzna w Rozwiązywaniu Problemów, Jan Antoszkiewicz). Użytkownik chce wdrożyć nawyk: "${factor.name}". Opis czynnika: ${factor.desc}. Bariery, które może napotkać: ${factor.barriers.join(', ')}. Kontekst użytkownika: ${userContext || 'brak dodatkowego kontekstu'}.
 
 Wygeneruj rekomendację wdrożeniową w następującym formacie (NIC poza tym formatem):
@@ -22,14 +26,14 @@ WERYFIKACJA: [jak zweryfikować/policzyć wdrożenie jutro]`;
   const timeoutId = setTimeout(() => controller.abort(), 15000);
 
   try {
-    const response = await fetch(settings.endpoint + "/chat/completions", {
+    const response = await fetch(endpoint + "/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + settings.apiKey,
+        Authorization: "Bearer " + apiKey,
       },
       body: JSON.stringify({
-        model: settings.model || "foxora-default",
+        model: model,
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
       }),

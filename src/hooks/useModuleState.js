@@ -6,7 +6,6 @@ const LS_KEYS = {
   activeModuleId: 'mindfullness_activeModuleId',
   activeFactorId: 'mindfullness_activeFactorId',
   userContext: 'mindfullness_userContext',
-  settings: 'mindfullness_settings',
 };
 
 function loadFromLS(key, fallback) {
@@ -37,20 +36,12 @@ export default function useModuleState() {
   const [userContext, setUserContextState] = useState(() =>
     loadFromLS(LS_KEYS.userContext, '')
   );
-  const [settings, setSettingsState] = useState(() =>
-    loadFromLS(LS_KEYS.settings, {
-      endpoint: 'https://api.foxora.ai/v1',
-      apiKey: '',
-      model: 'foxora-default',
-    })
-  );
 
   // Persist to localStorage
   useEffect(() => { saveToLS(LS_KEYS.activeModuleId, activeModuleId); }, [activeModuleId]);
   useEffect(() => { saveToLS(LS_KEYS.activeFactorId, activeFactorId); }, [activeFactorId]);
   useEffect(() => { saveToLS(LS_KEYS.factorStates, factorStates); }, [factorStates]);
   useEffect(() => { saveToLS(LS_KEYS.userContext, userContext); }, [userContext]);
-  useEffect(() => { saveToLS(LS_KEYS.settings, settings); }, [settings]);
 
   const activeModule = useMemo(
     () => MODULES.find((m) => m.id === activeModuleId) || MODULES[0],
@@ -124,10 +115,6 @@ export default function useModuleState() {
     setUserContextState(text);
   }, []);
 
-  const setSettings = useCallback((s) => {
-    setSettingsState(s);
-  }, []);
-
   return {
     modules: MODULES,
     activeModule,
@@ -135,7 +122,6 @@ export default function useModuleState() {
     activeFactorId,
     factorStates,
     userContext,
-    settings,
     unimplemented,
     nextFactor,
     doneCount,
@@ -148,6 +134,5 @@ export default function useModuleState() {
     setFactorInProgress,
     setRecommendation,
     setUserContext,
-    setSettings,
   };
 }

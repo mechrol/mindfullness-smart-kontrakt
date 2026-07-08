@@ -15,7 +15,6 @@ export default function App() {
     activeFactorId,
     factorStates,
     userContext,
-    settings,
     nextFactor,
     doneCount,
     total,
@@ -27,18 +26,10 @@ export default function App() {
     setFactorInProgress,
     setRecommendation,
     setUserContext,
-    setSettings,
   } = useModuleState();
 
   const [showSettings, setShowSettings] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-
-  // Show settings on first load if no API key
-  useEffect(() => {
-    if (!settings.apiKey) {
-      setShowSettings(true);
-    }
-  }, [settings.apiKey]);
 
   const handleFactorSelect = useCallback((id) => {
     if (!id) return;
@@ -60,14 +51,14 @@ export default function App() {
 
     setIsGenerating(true);
     try {
-      const rec = await generateRecommendation(factor, userContext, settings);
+      const rec = await generateRecommendation(factor, userContext);
       setRecommendation(id, rec);
     } catch (err) {
       setRecommendation(id, { error: 'Failed to generate: ' + err.message });
     } finally {
       setIsGenerating(false);
     }
-  }, [activeModule, markFactorProblem, setRecommendation, userContext, settings]);
+  }, [activeModule, markFactorProblem, setRecommendation, userContext]);
 
   const handleDone = useCallback((id) => {
     markFactorDone(id);
@@ -93,8 +84,9 @@ export default function App() {
             <button
               className="btn btn-sm btn-outline-white"
               onClick={() => setShowSettings(true)}
+              title="Ustawienia"
             >
-              Ustawienia
+              ⚙
             </button>
           </div>
           <p className="app-subtitle">Długowieczność przez świadome odżywianie</p>
@@ -155,13 +147,7 @@ export default function App() {
       </main>
 
       {showSettings && (
-        <SettingsPanel
-          endpoint={settings.endpoint}
-          apiKey={settings.apiKey}
-          model={settings.model}
-          onSave={setSettings}
-          onClose={() => setShowSettings(false)}
-        />
+        <SettingsPanel onClose={() => setShowSettings(false)} />
       )}
     </div>
   );

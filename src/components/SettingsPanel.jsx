@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 
-export default function SettingsPanel({ endpoint, apiKey, model, onSave, onClose }) {
-  const [localEndpoint, setLocalEndpoint] = useState(endpoint || 'https://api.foxora.ai/v1');
-  const [localApiKey, setLocalApiKey] = useState(apiKey || '');
-  const [localModel, setLocalModel] = useState(model || 'foxora-default');
+function readSetting(key, envVar, fallback) {
+  const lsVal = localStorage.getItem(key);
+  if (lsVal !== null) return lsVal;
+  if (envVar) return envVar;
+  return fallback || '';
+}
+
+export default function SettingsPanel({ onClose }) {
+  const [localEndpoint, setLocalEndpoint] = useState(() =>
+    readSetting('foxora_endpoint', import.meta.env.VITE_FOXORA_ENDPOINT, 'https://api.foxora.ai/v1')
+  );
+  const [localApiKey, setLocalApiKey] = useState(() =>
+    readSetting('foxora_api_key', import.meta.env.VITE_FOXORA_API_KEY)
+  );
+  const [localModel, setLocalModel] = useState(() =>
+    readSetting('foxora_model', import.meta.env.VITE_FOXORA_MODEL, 'foxora-default')
+  );
 
   function handleSave() {
-    onSave({
-      endpoint: localEndpoint,
-      apiKey: localApiKey,
-      model: localModel,
-    });
+    localStorage.setItem('foxora_endpoint', localEndpoint);
+    localStorage.setItem('foxora_api_key', localApiKey);
+    localStorage.setItem('foxora_model', localModel);
     onClose();
   }
 
