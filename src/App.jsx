@@ -83,15 +83,13 @@ export default function App() {
 
           <ProgressBar value={progress} label={"Postęp modułu " + activeModule.id} />
 
-          {/* ── Selektor czynnika (tylko niewdrożone) ── */}
-          {unimplemented.length > 0 && (
-            <FactorDropdown
-              factors={unimplemented}
-              factorStates={factorStates}
-              onSelect={handleFactorSelect}
-              activeFactorId={activeFactorId}
-            />
-          )}
+          {/* ── Selektor czynnika (wszystkie) ── */}
+          <FactorDropdown
+            factors={activeModule.factors}
+            factorStates={factorStates}
+            onSelect={handleFactorSelect}
+            activeFactorId={activeFactorId}
+          />
 
           {/* ── Auto-następny podpowiedź ── */}
           {!activeFactorId && nextFactor && (
