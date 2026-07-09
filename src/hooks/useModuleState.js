@@ -29,13 +29,11 @@ export default function useModuleState(themeId = 'mindfullness') {
   const [factorStates, setFactorStates] = useState(() => loadFromLS(KEYS.factorStates, {}));
   const [userContext, setUserContextState] = useState(() => loadFromLS(KEYS.userContext, ''));
 
-  // Reset when theme changes
   useEffect(() => {
     if (!modules || modules.length === 0) { setActiveModuleIdState(1); setActiveFactorIdState(''); return; }
     setActiveModuleIdState(1); setActiveFactorIdState('');
   }, [themeId]);
 
-  // Persist to localStorage
   useEffect(() => { saveToLS(KEYS.activeModuleId, activeModuleId); }, [activeModuleId, KEYS.activeModuleId]);
   useEffect(() => { saveToLS(KEYS.activeFactorId, activeFactorId); }, [activeFactorId, KEYS.activeFactorId]);
   useEffect(() => { saveToLS(KEYS.factorStates, factorStates); }, [factorStates, KEYS.factorStates]);
@@ -45,44 +43,19 @@ export default function useModuleState(themeId = 'mindfullness') {
   const factors = activeModule ? activeModule.factors : [];
 
   const { unimplemented, nextFactor, doneCount, total, progress } = useMemo(() => {
-    const total = factors.length;
-    let doneCount = 0;
-    const unimplemented = [];
-    for (const f of factors) {
-      const st = factorStates[f.id];
-      if (st && st.status === 'done') { doneCount++; }
-      else { unimplemented.push(f); }
-    }
-    const nextFactor = unimplemented.length > 0 ? unimplemented[0] : null;
-    return { unimplemented, nextFactor, doneCount, total, progress: total > 0 ? doneCount / total : 0 };
+    const total = factors.length; let doneCount = 0; const unimplemented = [];
+    for (const f of factors) { const st = factorStates[f.id]; if (st && st.status === 'done') doneCount++; else unimplemented.push(f); }
+    return { unimplemented, nextFactor: unimplemented.length > 0 ? unimplemented[0] : null, doneCount, total, progress: total > 0 ? doneCount / total : 0 };
   }, [factors, factorStates]);
 
   const selectModule = useCallback((id) => { setActiveModuleIdState(id); setActiveFactorIdState(''); }, []);
   const selectFactor = useCallback((id) => { setActiveFactorIdState(id); }, []);
-
-  const markFactorDone = useCallback((factorId) => {
-    setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'done' } }));
-    setActiveFactorIdState('');
-  }, []);
-
-  const markFactorProblem = useCallback((factorId) => {
-    setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'problem' } }));
-  }, []);
-
-  const setFactorInProgress = useCallback((factorId) => {
-    setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'in_progress' } }));
-  }, []);
-
-  const setRecommendation = useCallback((factorId, rec) => {
-    setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], recommendation: rec } }));
-  }, []);
-
-  const saveSmartContract = useCallback((factorId, contract) => {
-    setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], smartContract: contract, status: 'problem' } }));
-  }, []);
-
+  const markFactorDone = useCallback((factorId) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'done' } })); setActiveFactorIdState(''); }, []);
+  const markFactorProblem = useCallback((factorId) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'problem' } })); }, []);
+  const setFactorInProgress = useCallback((factorId) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'in_progress' } })); }, []);
+  const setRecommendation = useCallback((factorId, rec) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], recommendation: rec } })); }, []);
   const setUserContext = useCallback((text) => { setUserContextState(text); }, []);
 
   return { modules, activeModule, activeModuleId, activeFactorId, factorStates, userContext, unimplemented, nextFactor, doneCount, total, progress,
-    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext, saveSmartContract };
+    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext };
 }
