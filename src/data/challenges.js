@@ -838,5 +838,215 @@ const CHALLENGES = {
 {day:6,title:'Dieta wspierająca rzucanie',task:'Jedz więcej owoców i warzyw (antyoksydanty), pij wodę, unikaj kawy (wyzwala chęć palenia).',tip:'To, co jesz, wpływa na chęć palenia. Wybieraj mądrze.'},
 {day:7,title:'Nagroda za tydzień przygotowań',task:'Jesteś gotowy/a do rzucenia. Nagródź się za przygotowania — zasłużyłeś/aś.',tip:'Przygotowanie to już połowa sukcesu. Data rzucenia to twój pierwszy dzień nowego życia. 🚭'},
 ]},
+
+'schedule-regular-meetups':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Regularne spotkania to fundament więzi. Ale spontaniczność często wygrywa z planowaniem. Potrzebujemy systemu.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Zacznijmy od jednego stałego terminu w tygodniu. Wtorkowa kawa z przyjaciółką, piątkowy obiad z rodziną.'},
+{speaker:'Coach Zdrowia',text:'Relacje społeczne przedłużają życie bardziej niż dieta i ćwiczenia razem wzięte. To warte planowania.'},
+],days:[
+{day:1,title:'Zrób listę 5 osób',task:'Zapisz 5 osób, z którymi chcesz się regularnie spotykać. Rodzina, przyjaciele, znajomi.',tip:'Lista to pierwszy krok od intencji do działania.'},
+{day:2,title:'Wyślij pierwszą wiadomość',task:'Napisz do jednej osoby: "Dawno się nie widzieliśmy — może kawa w przyszłym tygodniu?"',tip:'Jedna wiadomość otwiera drzwi do regularności.'},
+{day:3,title:'Ustal stały termin',task:'Zaproponuj konkretny dzień tygodnia. Np. "Co drugi czwartek o 17:00?"',tip:'Stały termin tworzy rytm. Łatwiej go zapamiętać.'},
+{day:4,title:'Wpisz do kalendarza',task:'Wpisz spotkanie do kalendarza z przypomnieniem na 1 dzień i 1 godzinę przed.',tip:'Kalendarz to twój zewnętrzny mózg. Nie musisz pamiętać.'},
+{day:5,title:'Pierwsze spotkanie — zrealizuj',task:'Idź na pierwsze zaplanowane spotkanie. Bądź punktualny/a. Daj 100% uwagi.',tip:'Pierwszy raz jest najważniejszy. Pokazuje, że traktujesz to poważnie.'},
+{day:6,title:'Umów kolejne spotkanie',task:'Pod koniec spotkania umów kolejny termin. Nie czekaj — zrób to od razu.',tip:'Momentum to twój sprzymierzeniec. Nie trać go.'},
+{day:7,title:'Zaplanuj 3 stałe terminy',task:'Ustal 3 regularne spotkania: rodzinne, przyjacielskie, towarzyskie. Wpisz do kalendarza na miesiąc.',tip:'3 stałe terminy w miesiącu = bogatsze życie społeczne. 📅'},
+]},
+
+'join-hobby-group':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Wspólne hobby to idealny grunt pod przyjaźnie. Macie już coś wspólnego — zainteresowania. Reszta przyjdzie naturalnie.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Klucz: wybierz hobby, które naprawdę cię kręci. Nie udawaj kogoś, kim nie jesteś.'},
+{speaker:'Coach Zdrowia',text:'Grupa hobbystyczna to zobowiązanie — pozytywne! Regularne spotkania, wspólny cel, rozwój.'},
+],days:[
+{day:1,title:'Zidentyfikuj swoje hobby',task:'Zapisz 3 aktywności, które sprawiają ci radość: fotografia, szachy, wędrówki, taniec, rękodzieło.',tip:'Pasja to magnes. Przyciąga ludzi o podobnej energii.'},
+{day:2,title:'Szukaj grup — online i offline',task:'Wyszukaj grupy: Facebook, Meetup, lokalne domy kultury, biblioteki. Zapisz 3 opcje.',tip:'Google: "klub [twoje hobby] [twoje miasto]" — proste.'},
+{day:3,title:'Skontaktuj się z jedną grupą',task:'Napisz wiadomość: "Cześć, interesuję się X. Czy przyjmujecie nowych członków?"',tip:'Jedna wiadomość. 30 sekund. Może zmienić twoje życie towarzyskie.'},
+{day:4,title:'Idź na pierwsze spotkanie',task:'Weź udział w spotkaniu. Przyjdź 5 minut wcześniej. Przedstaw się. Uśmiechnij się.',tip:'Wszyscy byli kiedyś nowi. Nikt nie oczekuje, że będziesz ekspertem.'},
+{day:5,title:'Angażuj się — nie bądź obserwatorem',task:'Podczas spotkania: zadaj pytanie, podziel się opinią, zaproponuj temat na następny raz.',tip:'Aktywne uczestnictwo buduje relacje szybciej niż bierne.'},
+{day:6,title:'Zaproś kogoś na kawę po spotkaniu',task:'Zapytaj jedną osobę z grupy: "Może kawa po spotkaniu?"',tip:'Spotkania po spotkaniach to miejsce, gdzie rodzą się przyjaźnie.'},
+{day:7,title:'Oceń i zdecyduj',task:'Czy czujesz się dobrze w tej grupie? Jeśli tak — zostań na stałe. Jeśli nie — spróbuj innej.',tip:'Nie każda grupa będzie twoja. Szukaj, aż znajdziesz swoich ludzi. 🎯'},
+]},
+
+'community-volunteer':{experts:['Psycholog','Coach Zdrowia','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Wolontariat to najszybsza droga do poczucia sensu i nowych relacji. Dajesz i dostajesz jednocześnie.'},
+{speaker:'Coach Zdrowia',text:'Wolontariusze żyją dłużej, rzadziej chorują na depresję i mają silniejsze sieci społeczne.'},
+{speaker:'Trener Rozwoju Osobistego',text:'2 godziny tygodniowo wystarczą. To mniej niż jeden film na Netflixie.'},
+],days:[
+{day:1,title:'Znajdź swoją sprawę',task:'Zapisz 3 tematy, które cię poruszają: zwierzęta, dzieci, seniorzy, ekologia, kultura.',tip:'Pasja do sprawy to paliwo do działania.'},
+{day:2,title:'Szukaj organizacji',task:'Wyszukaj organizacje: Google Maps, wolontariat.org.pl, Facebook. Zapisz 3-5 opcji.',tip:'Każda organizacja potrzebuje rąk do pracy. Twoje są mile widziane.'},
+{day:3,title:'Wyślij zgłoszenie',task:'Napisz krótkiego maila: "Mam 2h tygodniowo, chcę pomóc w X. Kiedy mogę przyjść?"',tip:'Krótki mail jest lepszy niż perfekcyjne CV. Liczy się chęć.'},
+{day:4,title:'Pierwszy dzień — obserwuj',task:'Idź na pierwszy dyżur. Obserwuj, pytaj, bądź otwarty/a. Nie musisz wszystkiego umieć.',tip:'Pokora i ciekawość to cechy najlepszych wolontariuszy.'},
+{day:5,title:'Zaproponuj coś od siebie',task:'Masz pomysł? Podziel się. "A może zrobilibyśmy...?" Inicjatywa jest doceniana.',tip:'Nie czekaj na instrukcje. Działaj. Organizacje kochają inicjatywę.'},
+{day:6,title:'Poznaj innych wolontariuszy',task:'Porozmawiaj z innymi wolontariuszami. Zapytaj, dlaczego tu są. Dzielcie się historiami.',tip:'Wspólna misja to najsilniejszy klej społeczny.'},
+{day:7,title:'Zobowiąż się regularnie',task:'Ustal stały grafik: "Co drugą sobotę 10:00-12:00". Wpisz do kalendarza.',tip:'Regularność zmienia dobry uczynek w styl życia. ❤️'},
+]},
+
+'attend-events':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Wydarzenia społeczne to naturalne okazje do poznawania ludzi. Wystarczy przyjść. Reszta dzieje się sama.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Zacznij od jednego wydarzenia miesięcznie. Małe zobowiązanie, wielka nagroda społeczna.'},
+{speaker:'Coach Zdrowia',text:'Festyny, targi, koncerty w parku — często darmowe. Nie trzeba wydawać, żeby się socjalizować.'},
+],days:[
+{day:1,title:'Sprawdź kalendarz wydarzeń',task:'Wejdź na stronę miasta, Facebook Events, lokalne portale. Zapisz 3 interesujące wydarzenia w tym miesiącu.',tip:'Twoje miasto tętni wydarzeniami. Większość jest darmowa.'},
+{day:2,title:'Wybierz jedno — zapisz się',task:'Wybierz najciekawsze wydarzenie. Zapisz się (jeśli trzeba) i wpisz do kalendarza.',tip:'Decyzja podjęta = 50% sukcesu.'},
+{day:3,title:'Znajdź towarzystwo',task:'Zaproś kogoś: "Idę na X w sobotę — idziesz ze mną?" Jeśli nikt nie może — idź sam/a.',tip:'Samotne wyjście to odwaga. I więcej okazji do poznania nowych ludzi.'},
+{day:4,title:'Przygotuj się mentalnie',task:'Pomyśl: co chcesz wynieść z wydarzenia? Nowe kontakty? Wiedzę? Dobrą zabawę?',tip:'Intencja nadaje kierunek. Nie idziesz bez celu.'},
+{day:5,title:'Weź udział!',task:'Idź na wydarzenie. Zostań minimum godzinę. Porozmawiaj z minimum jedną nową osobą.',tip:'Jedna godzina, jedna rozmowa. To wszystko, czego dziś potrzebujesz.'},
+{day:6,title:'Refleksja po wydarzeniu',task:'Zapisz: co ci się podobało? Kogo poznałeś/aś? Czego się dowiedziałeś/aś?',tip:'Refleksja zamienia doświadczenie w naukę. Rośniesz z każdym wydarzeniem.'},
+{day:7,title:'Zaplanuj kolejne',task:'Na podstawie doświadczenia wybierz następne wydarzenie. Wpisz do kalendarza.',tip:'Comiesięczne wydarzenie to 12 nowych doświadczeń rocznie. 🎪'},
+]},
+
+'connect-neighbors':{experts:['Psycholog','Coach Zdrowia','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Sąsiedzi to twoja najbliższa społeczność. A jednak często ich nie znamy. Zacznijmy od prostego "dzień dobry".'},
+{speaker:'Coach Zdrowia',text:'Silne więzi sąsiedzkie dają poczucie bezpieczeństwa i przynależności. Bezcenne na starość.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Małe gesty budują wielkie mosty. Uśmiech, pomoc z zakupami, rozmowa o pogodzie.'},
+],days:[
+{day:1,title:'Dzień dobry — zacznij mówić',task:'Dziś powiedz "dzień dobry" każdemu sąsiadowi, którego spotkasz. Z uśmiechem.',tip:'Dzień dobry to początek każdej relacji. Proste, a działa.'},
+{day:2,title:'Przedstaw się',task:'Spotkaj sąsiada na dłużej niż 10 sekund? Przedstaw się: "Jestem X, mieszkam pod 5."',tip:'Imię to pierwszy krok od anonimowości do znajomości.'},
+{day:3,title:'Zapytaj o coś — otwórz rozmowę',task:'Zapytaj sąsiada: "Czy wie Pan/Pani, gdzie jest najbliższy dobry sklep?" — nawet jeśli wiesz.',tip:'Pytania otwierają rozmowę. Ludzie lubią pomagać.'},
+{day:4,title:'Mały gest — zaoferuj pomoc',task:'Zaoferuj pomoc: "Pomogę znieść zakupy", "Podleję kwiaty podczas wyjazdu".',tip:'Pomoc to uniwersalny język więzi. Nie potrzebujesz tłumacza.'},
+{day:5,title:'Podziel się czymś',task:'Zapukaj do sąsiada z nadwyżką: "Upiekłem/am za dużo ciasta — może Państwo wezmą kawałek?"',tip:'Jedzenie to najstarszy budowniczy mostów. Działa od tysięcy lat.'},
+{day:6,title:'Zaproś na kawę',task:'Zaproś jednego sąsiada na kawę. "W sobotę o 16:00?" Prosto i bez presji.',tip:'Kawa z sąsiadem zmienia blok w społeczność.'},
+{day:7,title:'Buduj dalej — podtrzymuj kontakt',task:'Ustal nawyk: raz w tygodniu porozmawiaj z sąsiadem dłużej niż "dzień dobry".',tip:'Małe kontakty budują wielkie poczucie bezpieczeństwa. 🏡'},
+]},
+
+'visit-community-centers':{experts:['Psycholog','Coach Zdrowia','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Centra społecznościowe to niedoceniane skarby. Warsztaty, zajęcia, kluby — wszystko pod jednym dachem.'},
+{speaker:'Coach Zdrowia',text:'Wiele zajęć jest darmowych lub za symboliczną opłatą. Dostępne dla każdego.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Wybierz jedno centrum i sprawdź jego ofertę. Może być bliżej niż myślisz.'},
+],days:[
+{day:1,title:'Znajdź centra w okolicy',task:'Wyszukaj "dom kultury", "centrum seniora", "klub osiedlowy" + twoja dzielnica. Zapisz 2-3.',tip:'Centra społecznościowe są wszędzie — tylko trzeba je znaleźć.'},
+{day:2,title:'Sprawdź ofertę online',task:'Wejdź na strony znalezionych centrów. Zobacz grafik zajęć: co, kiedy, za ile.',tip:'Większość ma strony z aktualnym grafikiem.'},
+{day:3,title:'Wybierz jedno — zadzwoń',task:'Zadzwoń lub napisz: "Interesują mnie zajęcia X. Czy są wolne miejsca?"',tip:'Jeden telefon rozwiewa wszystkie wątpliwości.'},
+{day:4,title:'Idź na zajęcia próbne',task:'Idź na pierwsze zajęcia. Obserwuj atmosferę, poznaj instruktora, porozmawiaj z uczestnikami.',tip:'Pierwszy raz jest informacyjny. Nie musisz decydować od razu.'},
+{day:5,title:'Spróbuj drugich zajęć',task:'Idź na inne zajęcia w tym samym centrum. Może taniec zamiast jogi? Eksperymentuj.',tip:'Centrum to bufet zajęć — próbuj różnych dań.'},
+{day:6,title:'Poznaj społeczność',task:'Zostań po zajęciach na kawę lub herbatę. Centra to nie tylko zajęcia — to ludzie.',tip:'Relacje rodzą się w przerwach, nie na zajęciach.'},
+{day:7,title:'Wybierz swoje zajęcia na stałe',task:'Zdecyduj, które zajęcia zostają w twoim grafiku. Zapisz się na semestr.',tip:'Regularne zajęcia = regularny kontakt z ludźmi. 🏫'},
+]},
+
+'reconnect-old-friends':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Starzy przyjaciele to skarb. Znają cię od lat, nie musisz się tłumaczyć. Ale kontakt się urywa...'},
+{speaker:'Trener Rozwoju Osobistego',text:'Jedna wiadomość może odnowić przyjaźń. Ludzie czekają, aż ktoś się odezwie pierwszy.'},
+{speaker:'Coach Zdrowia',text:'Badania: ludzie, którzy odnawiają stare przyjaźnie, są szczęśliwsi. I to od razu.'},
+],days:[
+{day:1,title:'Zrób listę starych przyjaciół',task:'Zapisz 3 osoby, z którymi straciłeś/aś kontakt. Może ze szkoły, pracy, osiedla.',tip:'3 osoby to realistyczny cel. Nie próbuj odnowić wszystkiego naraz.'},
+{day:2,title:'Znajdź kontakt — social media',task:'Wyszukaj pierwszą osobę na Facebooku, LinkedIn lub przez wspólnych znajomych.',tip:'Social media to najłatwiejszy sposób na znalezienie kogokolwiek.'},
+{day:3,title:'Wyślij pierwszą wiadomość',task:'Napisz krótko i szczerze: "Miałem/am Cię ostatnio w myślach. Jak się masz?"',tip:'Krótka wiadomość jest lepsza niż długa. Mniej presji.'},
+{day:4,title:'Odpowiedz na odpowiedź',task:'Gdy odpisze — kontynuuj rozmowę. Zaproponuj spotkanie offline lub rozmowę telefoniczną.',tip:'Tempo nadaje ten, kto odpowiada. Nie spiesz się.'},
+{day:5,title:'Umów spotkanie',task:'Zaproponuj konkret: "Kawa w sobotę o 12:00 w parku?"',tip:'Konkret zawsze wygrywa z "kiedyś się umówmy".'},
+{day:6,title:'Spotkaj się — bez oczekiwań',task:'Idź na spotkanie. Nie oczekuj, że będzie jak dawniej. Daj relacji ewoluować.',tip:'Ludzie się zmieniają. Twoja stara przyjaźń może mieć nową formę.'},
+{day:7,title:'Powtórz z kolejną osobą',task:'Wybierz drugą osobę z listy i rozpocznij proces od nowa.',tip:'3 odnowione przyjaźnie = bogatsze życie. Jedna już za tobą. 📞'},
+]},
+
+'use-social-media-wisely':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Social media to narzędzie — może budować mosty albo pogłębiać izolację. Wszystko zależy od tego, jak używasz.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Zamiast scrollować bez celu, dołącz do grup tematycznych. Tam są prawdziwi ludzie z twoimi zainteresowaniami.'},
+{speaker:'Coach Zdrowia',text:'Zasada: 30 minut dziennie na social media. Tyle wystarczy, by budować relacje bez uzależnienia.'},
+],days:[
+{day:1,title:'Audyt social mediów',task:'Sprawdź, ile czasu spędzasz na social media. Większość telefonów ma wbudowany licznik.',tip:'Świadomość to pierwszy krok. Możesz być zaskoczony/a.'},
+{day:2,title:'Znajdź 3 grupy tematyczne',task:'Na Facebooku lub Reddit znajdź 3 grupy związane z twoimi zainteresowaniami. Dołącz.',tip:'Grupy tematyczne to social media w najlepszym wydaniu.'},
+{day:3,title:'Skomentuj — nie tylko lajkuj',task:'Napisz przemyślany komentarz pod jednym postem w grupie. Podziel się opinią.',tip:'Komentarz buduje relację. Lajk tylko potwierdza, że byłeś/aś.'},
+{day:4,title:'Napisz do kogoś prywatnie',task:'Znajdź osobę o podobnych zainteresowaniach. Napisz: "Też interesuję się X. Fajny post!"',tip:'Prywatna wiadomość to most z online do offline.'},
+{day:5,title:'Ustaw limit 30 minut',task:'Ustaw dzienny limit 30 minut na social media. Timer w telefonie lub aplikacja.',tip:'30 minut to wystarczająco dużo, by budować relacje — i wystarczająco mało, by nie uzależniać.'},
+{day:6,title:'Odrzuć toksyczne kontakty',task:'Przejrzyj listę znajomych. Unfollow lub ukryj osoby, które psują ci nastrój.',tip:'Twoja przestrzeń online powinna być bezpieczna. Masz prawo ją czyścić.'},
+{day:7,title:'Zaplanuj tydzień mądrych mediów',task:'Ustal plan: 30 min dziennie, 3 grupy, 2 komentarze, 1 wiadomość prywatna.',tip:'Social media jako narzędzie, nie nałóg. Ty kontrolujesz. 📱'},
+]},
+
+'organize-group-activities':{experts:['Trener Rozwoju Osobistego','Psycholog','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Organizowanie spotkań to branie odpowiedzialności za swoje życie społeczne. Zamiast czekać na zaproszenie — działasz.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Zacznij od małego: wieczór gier, wspólne gotowanie, klub książki. Proste, niskokosztowe formaty.'},
+{speaker:'Coach Zdrowia',text:'Bycie organizatorem daje ci naturalną pozycję w centrum grupy. Ludzie cię zapamiętają.'},
+],days:[
+{day:1,title:'Wybierz format spotkania',task:'Wybierz: wieczór gier planszowych, klub książki, wspólne gotowanie, potluck (każdy przynosi danie).',tip:'Prosty format = łatwa organizacja. Nie komplikuj.'},
+{day:2,title:'Stwórz listę gości',task:'Zapisz 4-6 osób. Przyjaciele, znajomi z pracy, sąsiedzi. Mix jest najlepszy.',tip:'4-6 osób to idealna liczba. Każdy znajdzie kogoś do rozmowy.'},
+{day:3,title:'Ustal datę i miejsce',task:'Wybierz datę za 2 tygodnie. Miejsce: twój dom, park, wynajęta sala w osiedlowym klubie.',tip:'2 tygodnie to idealny wyprzedzenie. Nie za blisko, nie za daleko.'},
+{day:4,title:'Wyślij zaproszenia',task:'Wyślij wiadomość: jasna data, miejsce, format, co przynieść. Podekscytowanie jest zaraźliwe.',tip:'Konkretne zaproszenie dostaje konkretne odpowiedzi.'},
+{day:5,title:'Przygotuj się',task:'Kup przekąski, napoje, przygotuj gry lub materiały. Zrób checklistę.',tip:'Przygotowanie to 80% sukcesu każdego spotkania.'},
+{day:6,title:'Przypomnienie dzień przed',task:'Wyślij przypomnienie: "Jutro o 18:00! Czekam na Was!"',tip:'Przypomnienie zwiększa frekwencję o 30%. Ludzie zapominają.'},
+{day:7,title:'Dzień spotkania — bądź gospodarzem',task:'Przywitaj każdego osobiście. Przedstaw ludzi sobie nawzajem. Zadbaj o atmosferę.',tip:'Dobry gospodarz to ten, przy którym wszyscy czują się swobodnie. 🎲'},
+]},
+
+'prioritize-social-time':{experts:['Psycholog','Coach Zdrowia','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Brak czasu to wymówka numer jeden. Ale na co znajdziesz czas, to staje się priorytetem.'},
+{speaker:'Coach Zdrowia',text:'Relacje społeczne to nie dodatek do życia — to esencja zdrowia. Traktuj je jak wizytę u lekarza.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Technika blokowania czasu: wpisz spotkania społeczne do kalendarza jako stałe, nieprzesuwalne bloki.'},
+],days:[
+{day:1,title:'Audyt tygodnia — gdzie jest czas?',task:'Przejrzyj swój kalendarz. Znajdź 2 okienka po 1-2 godziny, które możesz przeznaczyć na relacje.',tip:'Zawsze jest jedno okienko. Trzeba tylko chcieć je znaleźć.'},
+{day:2,title:'Zablokuj czas — jak wizytę u lekarza',task:'Wpisz "Czas społeczny" do kalendarza. Nieprzesuwalne. Tak jak wizyta u lekarza.',tip:'To, co w kalendarzu, staje się realne. To, co w głowie — zostaje w głowie.'},
+{day:3,title:'Połącz przyjemne z pożytecznym',task:'Połącz spotkanie z aktywnością: spacer + rozmowa, zakupy + kawa z przyjaciółką, ćwiczenia w duecie.',tip:'Łączenie oszczędza czas i daje podwójną korzyść.'},
+{day:4,title:'Mikro-interakcje — 5 minut wystarczy',task:'Nie masz godziny? Zadzwoń do kogoś na 5 minut. "Tylko chciałem/am usłyszeć twój głos."',tip:'5-minutowy telefon może dać więcej niż godzina scrollowania.'},
+{day:5,title:'Rytuały społeczne — stałe punkty',task:'Ustal rytuał: niedzielny obiad z rodziną, piątkowa kawa z koleżanką. Niezmienne.',tip:'Rytuały nie wymagają planowania. Po prostu się dzieją.'},
+{day:6,title:'Odmawiaj rzeczy nieistotnych',task:'Zidentyfikuj 2 zajęcia, które kradną twój czas bez wartości. Zastąp je spotkaniem.',tip:'Każde "nie" dla nieważnego to "tak" dla ważnego.'},
+{day:7,title:'Podsumuj — ile zyskałeś/aś?',task:'Zapisz: ile czasu spędziłeś/aś z ludźmi w tym tygodniu? Jak się czujesz?',tip:'Czas z ludźmi to inwestycja, która zawsze się zwraca. ⏰'},
+]},
+
+'open-to-new-relationships':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Nowe przyjaźnie po 50-tce są możliwe. Trzeba tylko otworzyć drzwi. Pierwszy krok zawsze należy do ciebie.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Przyjaźnie buduje się przez powtarzalny kontakt. Nie musisz być duszą towarzystwa — wystarczy być obecnym/a.'},
+{speaker:'Coach Zdrowia',text:'Każdy nowy człowiek to nowa perspektywa. Poszerza horyzonty i odmładza umysł.'},
+],days:[
+{day:1,title:'Zmień rutynę — bądź w nowym miejscu',task:'Idź do nowej kawiarni, nowego parku, nowego sklepu. Bądź tam, gdzie są nowi ludzie.',tip:'Nowe miejsce = nowe twarze = nowe możliwości.'},
+{day:2,title:'Uśmiechnij się do obcej osoby',task:'Uśmiechnij się do kogoś w kolejce, w autobusie, w parku. Nie potrzebujesz słów.',tip:'Uśmiech to uniwersalne zaproszenie. Otwiera 90% drzwi.'},
+{day:3,title:'Zacznij rozmowę z obcym',task:'Zagadaj do kogoś: "Przepraszam, czy wie Pan/Pani, która godzina?" — i kontynuuj rozmowę.',tip:'Rozmowa z obcym to przygoda. Nigdy nie wiesz, kogo spotkasz.'},
+{day:4,title:'Przyjmij zaproszenie — nawet jeśli masz wątpliwości',task:'Ktoś cię gdzieś zaprasza? Powiedz TAK. Nawet jeśli nie masz ochoty.',tip:'Discomfort to growing pains relacji. Przez nie się przechodzi.'},
+{day:5,title:'Zaproponuj spotkanie nowej osobie',task:'Poznałeś/aś kogoś ciekawego? Zaproponuj kawę. "Fajnie się rozmawiało — może powtórzymy?"',tip:'Inicjatywa jest sexy. Ludzie podziwiają odwagę.'},
+{day:6,title:'Słuchaj więcej niż mówisz',task:'W nowej relacji: zadawaj pytania, słuchaj odpowiedzi. Nie spiesz się z oceną.',tip:'Ludzie uwielbiają być słuchani. Daj im ten prezent.'},
+{day:7,title:'Oceń — czy ta relacja cię wzbogaca?',task:'Zastanów się nad nowymi kontaktami z tego tygodnia. Które chcesz rozwijać?',tip:'Nie każda znajomość stanie się przyjaźnią. I to jest OK. 🌱'},
+]},
+
+'support-friends-family':{experts:['Psycholog','Coach Zdrowia','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Wspieranie innych to nie tylko pomaganie im — to wzmacnianie więzi. Relacje rosną przez troskę.'},
+{speaker:'Coach Zdrowia',text:'Dawanie wsparcia obniża poziom kortyzolu u dającego. Pomagając innym, pomagasz sobie.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Wsparcie nie musi być wielkie. Czasem wystarczy: "Myślę o tobie". To więcej niż myślisz.'},
+],days:[
+{day:1,title:'Zapytaj: "Jak się naprawdę czujesz?"',task:'Zadzwoń do bliskiej osoby i zapytaj szczerze, jak się czuje. Nie "w porządku" — prawdziwie.',tip:'Jedno pytanie zadane z troską znaczy więcej niż 10 zdawkowych.'},
+{day:2,title:'Wysłuchaj bez radzenia',task:'Gdy ktoś się zwierza — nie dawaj rad (chyba że prosi). Po prostu słuchaj i potwierdzaj uczucia.',tip:'"Rozumiem, że to trudne" jest lepsze niż "powinieneś/naś..."'},
+{day:3,title:'Zaoferuj konkretną pomoc',task:'Zamiast "daj znać, gdybyś czegoś potrzebował/a", zaproponuj: "Zrobię ci zakupy w czwartek".',tip:'Konkretna pomoc wygrywa z ogólnikową. Zawsze.'},
+{day:4,title:'Świętuj cudze sukcesy',task:'Ktoś z bliskich osiągnął coś? Zadzwoń i pogratuluj. Entuzjazm jest zaraźliwy.',tip:'Prawdziwi przyjaciele świętują sukcesy innych jak własne.'},
+{day:5,title:'Bądź obecny/a w kryzysie',task:'Ktoś ma trudny moment? Nie musisz nic mówić. Po prostu bądź obok. Fizycznie lub przez telefon.',tip:'Obecność to najpotężniejsza forma wsparcia. Przewyższa słowa.'},
+{day:6,title:'Pamiętaj o ważnych datach',task:'Zapisz urodziny, rocznice, ważne wydarzenia bliskich. Wyślij wiadomość w ten dzień.',tip:'Pamiętanie to dowód, że zależy. Technologia to ułatwia.'},
+{day:7,title:'Sprawdź swoje wsparcie — czy jest wzajemne?',task:'Czy twoje relacje są dwustronne? Czy ty też otrzymujesz wsparcie?',tip:'Zdrowa relacja to wymiana. Nie tylko dawanie i nie tylko branie. 🤝'},
+]},
+
+'attend-cultural-events':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Kultura łączy ludzi. Wspólne przeżycie artystyczne tworzy natychmiastową więź — macie o czym rozmawiać.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Od lokalnej galerii po filharmonię — każde miasto ma wydarzenia kulturalne. Często tańsze niż myślisz.'},
+{speaker:'Coach Zdrowia',text:'Kultura stymuluje mózg, poszerza horyzonty i daje tematy do rozmów na tygodnie.'},
+],days:[
+{day:1,title:'Sprawdź repertuar — co grają',task:'Wejdź na strony: kino studyjne, teatr, filharmonia, galeria sztuki w twojej okolicy. Zapisz 3 opcje.',tip:'Każde miasto ma życie kulturalne. Nawet małe.'},
+{day:2,title:'Wybierz jedno wydarzenie',task:'Wybierz najciekawsze wydarzenie w ciągu miesiąca. Nie musi być drogie — wernisaże są za darmo.',tip:'Kultura nie musi kosztować. Darmowe wystawy, koncerty w parku, pokazy filmowe.'},
+{day:3,title:'Zaproś kogoś',task:'Zaproś 1-2 osoby. "Idę na X w sobotę. Dołączysz?" Wspólne przeżycie = wspólny temat.',tip:'Kultura dzielona z kimś daje 2x więcej radości.'},
+{day:4,title:'Kup bilet — zobowiąż się',task:'Kup bilet online. Finansowe zobowiązanie zmniejsza szansę, że odwołasz.',tip:'Zapłacone = zrobione. Prosta psychologia.'},
+{day:5,title:'Weź udział — chłoń',task:'Idź na wydarzenie. Wyłącz telefon. Bądź w pełni obecny/a. Poczuj sztukę.',tip:'Sztuka działa, gdy jesteś na nią otwarty/a.'},
+{day:6,title:'Podziel się wrażeniami',task:'Po wydarzeniu: napisz post, opowiedz znajomym, podziel się na grupie. Twoja refleksja wzbogaca innych.',tip:'Dzielenie się sztuką przedłuża jej działanie.'},
+{day:7,title:'Zaplanuj cykl kulturalny',task:'Zaplanuj jedno wydarzenie kulturalne miesięcznie na 3 miesiące do przodu. Wpisz do kalendarza.',tip:'3 miesiące, 3 wydarzenia, 3 nowe doświadczenia. Kultura to styl życia. 🎭'},
+]},
+
+'practice-active-listening':{experts:['Psycholog','Instruktor Mindfulness','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Aktywne słuchanie to najważniejsza umiejętność społeczna. Większość ludzi słucha, żeby odpowiedzieć — nie żeby zrozumieć.'},
+{speaker:'Instruktor Mindfulness',text:'Słuchanie to praktyka uważności w relacji. Bądź tu i teraz z drugim człowiekiem.'},
+{speaker:'Trener Rozwoju Osobistego',text:'3 techniki: parafraza, pytania otwarte, cisza. Proste, a rewolucyjne.'},
+],days:[
+{day:1,title:'Słuchaj bez przerywania — dziś',task:'W każdej dzisiejszej rozmowie: nie przerywaj. Pozwól drugiej osobie dokończyć myśl.',tip:'Przerywanie to mówienie: "Moje słowa są ważniejsze niż twoje".'},
+{day:2,title:'Parafrazuj — "czyli mówisz, że..."',task:'Po wypowiedzi rozmówcy powiedz własnymi słowami, co usłyszałeś/aś: "Czyli czujesz, że..."',tip:'Parafraza to test zrozumienia. I dowód, że słuchałeś/aś.'},
+{day:3,title:'Zadawaj pytania otwarte',task:'Zamiast "czy było fajnie?", zapytaj "co było najciekawsze?". Pytania otwarte otwierają rozmowę.',tip:'Pytania otwarte to klucze do głębszych rozmów.'},
+{day:4,title:'Kontakt wzrokowy — twój wzrok mówi',task:'Utrzymuj kontakt wzrokowy 70% czasu rozmowy. Nie gap się — po prostu patrz.',tip:'Oczy mówią: "Jestem z tobą". Telefon mówi: "Jestem gdzie indziej".'},
+{day:5,title:'Cisza jest OK — nie wypełniaj jej',task:'Gdy rozmówca milknie, nie spiesz się z odpowiedzią. Daj 5 sekund ciszy. To przestrzeń do myślenia.',tip:'Cisza nie jest niezręczna. Jest szacunkiem dla refleksji.'},
+{day:6,title:'Obserwuj mowę ciała',task:'Zwracaj uwagę na ton, gesty, postawę. 70% komunikatu to nie słowa.',tip:'Ciało mówi prawdę. Słowa czasem kłamią.'},
+{day:7,title:'Ćwicz z bliską osobą — poproś o feedback',task:'Zaproś kogoś bliskiego: "Ćwiczę aktywne słuchanie. Daj mi znać, jak mi idzie."',tip:'Feedback to lustro. Pokaże ci, jak widzą cię inni. 👂'},
+]},
+
+'reflect-social-goals':{experts:['Psycholog','Trener Rozwoju Osobistego','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Refleksja to meta-umiejętność. Bez niej działamy automatycznie. Z nią — świadomie kierujemy swoim życiem społecznym.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Raz w miesiącu usiądź i zapytaj siebie: czy jestem bliżej ludzi, na których mi zależy?'},
+{speaker:'Coach Zdrowia',text:'Cele społeczne są jak cele zdrowotne. Jeśli ich nie mierzysz — nie wiesz, czy robisz postęp.'},
+],days:[
+{day:1,title:'Zdefiniuj swoje cele społeczne',task:'Zapisz: ile czasu chcesz spędzać z ludźmi tygodniowo? Z kim? W jakiej formie?',tip:'Cel bez liczby to marzenie. Cel z liczbą to plan.'},
+{day:2,title:'Oceń stan obecny',task:'Spisz swoje obecne kontakty: ile osób widujesz regularnie? Jak często? Jak się z tym czujesz?',tip:'Uczciwa ocena to punkt startowy. Bez oceniania siebie.'},
+{day:3,title:'Znajdź lukę — czego brakuje?',task:'Porównaj stan obecny z celem. Gdzie jest największa różnica? Czego najbardziej ci brak?',tip:'Luka to nie porażka — to kierunek działania.'},
+{day:4,title:'Ustal jeden konkretny cel',task:'Wybierz JEDEN cel: "Będę spotykać się z przyjaciółmi 2x w miesiącu" — konkretny, mierzalny.',tip:'Jeden cel zrealizowany to więcej niż pięć wymarzonych.'},
+{day:5,title:'Stwórz plan działania',task:'Rozpisz: co, kiedy, z kim. Konkretne daty, konkretne osoby, konkretne aktywności.',tip:'Plan to most między "chcę" a "robię".'},
+{day:6,title:'Dostosuj — co się sprawdza?',task:'Sprawdź plan po tygodniu. Co działa, a co nie? Dostosuj, nie porzucaj.',tip:'Elastyczność to siła, nie słabość. Dostosowuj i działaj dalej.'},
+{day:7,title:'Miesięczna refleksja — rytuał',task:'Ustaw comiesięczne przypomnienie: "Refleksja społeczna". 15 minut na podsumowanie i planowanie.',tip:'Raz w miesiącu = 12 okazji rocznie do skorygowania kursu. 📝'},
+]},
 };
 export default CHALLENGES;
