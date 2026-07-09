@@ -81,7 +81,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-stone-50">
       {/* PEMF Banner */}
-      <a href="https://app.justap.io/card/aplikacja/coach" target="_blank" rel="noopener noreferrer"
+      <a href="https://dobrobyt.aitribes.app/s/bW6xX" target="_blank" rel="noopener noreferrer"
         className="block bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 text-white hover:from-violet-500 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between relative z-10">
