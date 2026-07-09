@@ -9,6 +9,9 @@ import FactorCard from './components/FactorCard.jsx';
 import ProgressBar from './components/ProgressBar.jsx';
 import SettingsPanel from './components/SettingsPanel.jsx';
 
+const COMMUNITY_URL = 'https://dobrobyt.aitribes.app/s/bW6xX';
+const INACTIVE_THEMES = new Set(['sport','sen','relacje','praca','finanse']);
+
 export default function App() {
   const [themeId, setThemeId] = useState('mindfullness');
   const {
@@ -87,7 +90,7 @@ export default function App() {
           <div className="mb-4"><label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">Temat</label>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
               {THEMES.map((t) => (
-                <button key={t.id} onClick={() => setThemeId(t.id)} className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${themeId===t.id?'bg-green-600 text-white shadow-md shadow-green-200 scale-105':'bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-800'}`}>{t.name}</button>
+                <button key={t.id} onClick={() => { if (INACTIVE_THEMES.has(t.id)) { window.open(COMMUNITY_URL,'_blank','noopener'); } else { setThemeId(t.id); } }} className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${themeId===t.id?'bg-green-600 text-white shadow-md shadow-green-200 scale-105':'bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-stone-800'}`}>{t.name}</button>
               ))}
             </div>
           </div>
