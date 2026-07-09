@@ -124,6 +124,7 @@ export default function App() {
               showChallenge={!!activeFactorState.challenge}
               challenge={activeFactorState.challenge}
               onCloseChallenge={() => handleCloseChallenge(activeFactorData.id)}
+              hasChallenge={!!CHALLENGES[activeFactorData.id]}
             />
           </div>
         )}

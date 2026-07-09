@@ -9,9 +9,12 @@ const STATUS_BADGE = {
   done: { label: 'Wdrożone', cls: 'bg-green-100 text-green-700' },
 };
 
+const COMMUNITY_URL = 'https://dobrobyt.aitribes.app/s/bW6xX';
+
 export default function FactorCard({
   factor, factorState, onStart, onProblem, onDone, userContext, onContextChange,
   isGenerating, onShowChallenge, showChallenge, challenge, onCloseChallenge,
+  hasChallenge,
 }) {
   const status = (factorState && factorState.status) || 'not_started';
   const badge = STATUS_BADGE[status] || STATUS_BADGE.not_started;
@@ -40,19 +43,25 @@ export default function FactorCard({
       <div className="flex flex-wrap gap-3">
         {(status==='not_started')&&(<>
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onStart(factor.id)}>Rozpocznij wdrażanie</button>
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>onProblem(factor.id)}>Mam problem — potrzebuję metody</button>
+          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>{onProblem(factor.id);window.open(COMMUNITY_URL,'_blank','noopener');}}>Mam problem — potrzebuję metody</button>
         </>)}
         {(status==='in_progress')&&(<>
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>onProblem(factor.id)}>Mam problem — potrzebuję metody</button>
+          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>{onProblem(factor.id);window.open(COMMUNITY_URL,'_blank','noopener');}}>Mam problem — potrzebuję metody</button>
         </>)}
         {(status==='problem')&&(
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
         )}
-        {/* Challenge button */}
+        {/* Challenge / Community button */}
         <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200"
-          onClick={() => onShowChallenge && onShowChallenge(factor.id)}>
-          🎯 7-dniowe wyzwanie
+          onClick={() => {
+            if (hasChallenge) {
+              onShowChallenge && onShowChallenge(factor.id);
+            } else {
+              window.open(COMMUNITY_URL, '_blank', 'noopener');
+            }
+          }}>
+          {hasChallenge ? '🎯 7-dniowe wyzwanie' : '🌐 Dołącz do społeczności'}
         </button>
       </div>
       {isGenerating&&(<div className="flex items-center gap-3 mt-4 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 animate-fade-in"><div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"/><span className="text-blue-700 text-sm font-medium">Generuję rekomendację metodą MSWRP...</span></div>)}
