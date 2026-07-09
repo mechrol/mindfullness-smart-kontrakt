@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import useModuleState from './hooks/useModuleState.js';
 import { THEMES } from './data/themes.js';
 import { generateRecommendation } from './services/foxoraApi.js';
+import CHALLENGES from './data/challenges.js';
 import ModuleDropdown from './components/ModuleDropdown.jsx';
 import FactorDropdown from './components/FactorDropdown.jsx';
 import FactorCard from './components/FactorCard.jsx';
@@ -14,7 +15,7 @@ export default function App() {
     modules, activeModule, activeModuleId, activeFactorId, factorStates, userContext,
     nextFactor, doneCount, total, progress,
     selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress,
-    setRecommendation, setUserContext,
+    setRecommendation, setUserContext, setChallenge,
   } = useModuleState(themeId);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -44,9 +45,20 @@ export default function App() {
 
   const handleDone = useCallback((id) => { markFactorDone(id); }, [markFactorDone]);
 
+  // Challenge handlers
+  const handleShowChallenge = useCallback((factorId) => {
+    const ch = CHALLENGES[factorId];
+    if (ch) setChallenge(factorId, ch);
+  }, [setChallenge]);
+
+  const handleCloseChallenge = useCallback((factorId) => {
+    setChallenge(factorId, null);
+  }, [setChallenge]);
+
   useEffect(() => {}, [activeFactorId, nextFactor]);
 
   const activeFactorData = activeModule.factors.find((f) => f.id === activeFactorId);
+  const activeFactorState = activeFactorData ? (factorStates[activeFactorData.id] || { status: 'not_started' }) : null;
   const allDone = doneCount === total && total > 0;
   const currentTheme = THEMES.find((t) => t.id === themeId);
 
@@ -103,11 +115,16 @@ export default function App() {
           <div className="mt-5 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-2xl p-6 text-center animate-slide-up shadow-lg"><div className="text-4xl mb-2">🎉</div><p className="text-xl font-bold">Wszystkie 15 czynników wdrożonych!</p><p className="text-green-100 mt-1">Gratulacje! Wybierz kolejny moduł, aby kontynuować.</p></div>
         )}
 
-        {activeFactorData && (
+        {activeFactorData && activeFactorState && (
           <div className="mt-5 animate-slide-up">
-            <FactorCard factor={activeFactorData} factorState={factorStates[activeFactorData.id]||{status:'not_started'}}
+            <FactorCard factor={activeFactorData} factorState={activeFactorState}
               onStart={handleStart} onProblem={handleProblem} onDone={handleDone}
-              userContext={userContext} onContextChange={setUserContext} isGenerating={isGenerating} />
+              userContext={userContext} onContextChange={setUserContext} isGenerating={isGenerating}
+              onShowChallenge={handleShowChallenge}
+              showChallenge={!!activeFactorState.challenge}
+              challenge={activeFactorState.challenge}
+              onCloseChallenge={() => handleCloseChallenge(activeFactorData.id)}
+            />
           </div>
         )}
       </main>

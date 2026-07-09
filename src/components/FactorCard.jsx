@@ -1,5 +1,6 @@
 import React from 'react';
 import RecommendationPanel from './RecommendationPanel.jsx';
+import SevenDayChallenge from './SevenDayChallenge.jsx';
 
 const STATUS_BADGE = {
   not_started: { label: 'Nie rozpoczęto', cls: 'bg-stone-100 text-stone-500' },
@@ -9,7 +10,8 @@ const STATUS_BADGE = {
 };
 
 export default function FactorCard({
-  factor, factorState, onStart, onProblem, onDone, userContext, onContextChange, isGenerating,
+  factor, factorState, onStart, onProblem, onDone, userContext, onContextChange,
+  isGenerating, onShowChallenge, showChallenge, challenge, onCloseChallenge,
 }) {
   const status = (factorState && factorState.status) || 'not_started';
   const badge = STATUS_BADGE[status] || STATUS_BADGE.not_started;
@@ -47,10 +49,20 @@ export default function FactorCard({
         {(status==='problem')&&(
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
         )}
+        {/* Challenge button */}
+        <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200"
+          onClick={() => onShowChallenge && onShowChallenge(factor.id)}>
+          🎯 7-dniowe wyzwanie
+        </button>
       </div>
       {isGenerating&&(<div className="flex items-center gap-3 mt-4 bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 animate-fade-in"><div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"/><span className="text-blue-700 text-sm font-medium">Generuję rekomendację metodą MSWRP...</span></div>)}
       {rec&&!rec.error&&<RecommendationPanel recommendation={rec} onDone={()=>onDone(factor.id)}/>}
       {rec&&rec.error&&<div className="mt-4 bg-red-50 border border-red-300 rounded-xl px-4 py-3 text-red-700 text-sm">Błąd generowania: {rec.error}</div>}
+
+      {/* 7-Day Challenge */}
+      {showChallenge && challenge && (
+        <SevenDayChallenge factor={factor} challenge={challenge} onClose={onCloseChallenge} />
+      )}
     </div>
   );
 }

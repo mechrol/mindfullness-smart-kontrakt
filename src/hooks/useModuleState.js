@@ -54,8 +54,9 @@ export default function useModuleState(themeId = 'mindfullness') {
   const markFactorProblem = useCallback((factorId) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'problem' } })); }, []);
   const setFactorInProgress = useCallback((factorId) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], status: 'in_progress' } })); }, []);
   const setRecommendation = useCallback((factorId, rec) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], recommendation: rec } })); }, []);
+  const setChallenge = useCallback((factorId, challenge) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], challenge } })); }, []);
   const setUserContext = useCallback((text) => { setUserContextState(text); }, []);
 
   return { modules, activeModule, activeModuleId, activeFactorId, factorStates, userContext, unimplemented, nextFactor, doneCount, total, progress,
-    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext };
+    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext, setChallenge };
 }
