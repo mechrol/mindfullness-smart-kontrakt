@@ -628,5 +628,215 @@ const CHALLENGES = {
 {day:6,title:'Dzień dla umysłu',task:'Zamiast ćwiczeń fizycznych: medytacja, czytanie, hobby. Nakarm umysł.',tip:'Regeneracja psychiczna jest równie ważna jak fizyczna.'},
 {day:7,title:'Zaplanuj rytm tygodnia',task:'Ustal rytm: 3 dni ćwiczeń, 1 dzień odpoczynku, 3 dni ćwiczeń. Albo 2+1+2+1+1.',tip:'Rytm to klucz. Twoje ciało kocha przewidywalność. 🛌'},
 ]},
+
+'increase-dairy-intake':{experts:['Dietetyk','Psycholog','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Zwiększenie nabiału to dla wielu wyzwanie — nietolerancja laktozy, przyzwyczajenia smakowe. Potrzebujemy elastycznego planu.'},
+{speaker:'Dietetyk',text:'Klucz: różnorodność źródeł. Nie tylko mleko — jogurt, kefir, ser biały, ser żółty. Każdy znajdzie coś dla siebie.'},
+{speaker:'Coach Zdrowia',text:'A jeśli nie możesz nabiału? Też są opcje. Mleko bez laktozy, napoje roślinne wzbogacane wapniem. Nie ma wymówek.'},
+],days:[
+{day:1,title:'Sprawdź, ile wapnia jesz',task:'Zapisz wszystkie produkty mleczne, które dziś zjadłeś/aś. Oszacuj ile to mg wapnia (jogurt 200ml = ~300mg).',tip:'Świadomość to pierwszy krok. Dziś tylko obserwujesz.'},
+{day:2,title:'Jogurt naturalny — baza',task:'Zjedz jogurt naturalny na śniadanie lub jako przekąskę. Dodaj owoce, orzechy — będzie pysznie.',tip:'Jeden jogurt to 25% dziennego zapotrzebowania na wapń. Proste.'},
+{day:3,title:'Ser twarogowy — uniwersalny',task:'Dodaj ser biały do jednego posiłku: na kanapkę, do sałatki, z rzodkiewką. Albo słodko z miodem.',tip:'Twaróg to polski superfood. Wapń + białko w jednym.'},
+{day:4,title:'Mleko w nowej formie',task:'Dodaj mleko tam, gdzie go nie dajesz: do zupy-krem zamiast wody, do owsianki, do koktajlu.',tip:'Mleko to nie tylko napój — to składnik. Wykorzystaj je kreatywnie.'},
+{day:5,title:'Kefir — probiotyki + wapń',task:'Wypij szklankę kefiru. Możesz doprawić solą i pieprzem (tak, na słono!) lub dodać owoce.',tip:'Kefir to 2w1: wapń dla kości i probiotyki dla jelit.'},
+{day:6,title:'Ser żółty — z umiarem',task:'Zjedz plasterek dobrego sera żółtego. Wybierz ten o wyższej zawartości wapnia: parmezan, gouda.',tip:'Twarde sery mają najwięcej wapnia. Jeden plasterek parmezanu to tyle wapnia co szklanka mleka.'},
+{day:7,title:'Nabiałowy plan tygodnia',task:'Zaplanuj produkty mleczne na każdy dzień tygodnia. 2-3 porcje dziennie. Zapisz ulubione kombinacje.',tip:'Tydzień z nabiałem to inwestycja w mocne kości na lata. 🥛'},
+]},
+
+'add-leafy-greens':{experts:['Dietetyk','Psycholog','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Zielone warzywa to roślinne źródło wapnia. Ale wiele osób ma opór przed ich smakiem. Jak to przełamać?'},
+{speaker:'Dietetyk',text:'Sztuka to ukrycie. Szpinak w koktajlu jest niewyczuwalny. Jarmuż jako chipsy smakuje lepiej niż ziemniaczane.'},
+{speaker:'Coach Zdrowia',text:'Każdego dnia jedno zielone warzywo w nowej odsłonie. Po tygodniu będziesz mieć 7 sprawdzonych przepisów.'},
+],days:[
+{day:1,title:'Szpinak w koktajlu',task:'Zblenduj garść szpinaku z bananem, mlekiem i odrobiną miodu. Nie poczujesz smaku szpinaku — obiecuję.',tip:'Zielony kolor to nie smak. Daj szansę — będziesz zaskoczony/a.'},
+{day:2,title:'Jarmuż — chipsy z piekarnika',task:'Porwij jarmuż na kawałki, skrop oliwą, posyp solą. Piecz 10 minut w 180°C. Chrupiące!',tip:'Chipsy z jarmużu to zdrowsze chipsy. I naprawdę smaczne.'},
+{day:3,title:'Brokuł na parze z czosnkiem',task:'Ugotuj brokuła na parze (zachowuje najwięcej wapnia). Skrop oliwą i posyp czosnkiem. 5 minut.',tip:'Brokuł na parze to zielone złoto. Nie rozgotowuj — ma być al dente.'},
+{day:4,title:'Rukola w sałatce',task:'Zrób sałatkę z rukolą jako bazą. Dodaj pomidory, ser, orzechy. Rukola ma pieprzny smak — energetyzuje.',tip:'Rukola to nie tylko wapń. To też żelazo i witamina K dla kości.'},
+{day:5,title:'Kapusta włoska — duszona',task:'Podduś kapustę włoską na oliwie z kminkiem. Podawaj jako dodatek do obiadu.',tip:'Kapusta to niedocenione źródło wapnia. Polska kuchnia to znała.'},
+{day:6,title:'Szpinak na ciepło — dodatek',task:'Dodaj garść szpinaku do makaronu, omletu lub zupy. Ciepły szpinak ma łagodniejszy smak.',tip:'Szpinak zmniejsza objętość 10x po podgrzaniu. Garść znika w mgnieniu oka.'},
+{day:7,title:'Zielony tydzień — podsumowanie',task:'Które warzywo najbardziej ci smakowało? Wybierz 3 ulubione i włącz je do stałego menu.',tip:'3 zielone warzywa w tygodniu to lepsze kości i więcej energii. 🥬'},
+]},
+
+'eat-fortified-foods':{experts:['Dietetyk','Coach Zdrowia','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Żywność wzbogacana to sprytny sposób na uzupełnienie wapnia i witaminy D bez zmiany nawyków.'},
+{speaker:'Dietetyk',text:'Płatki śniadaniowe, mleko roślinne, soki — wszystko może być fortyfikowane. Trzeba tylko czytać etykiety.'},
+{speaker:'Coach Zdrowia',text:'Czytanie etykiet to nawyk na całe życie. Dziś uczymy się go — jutro robisz to automatycznie.'},
+],days:[
+{day:1,title:'Sprawdź swoją spiżarnię',task:'Przejrzyj produkty w kuchni. Sprawdź etykiety: które mają dodany wapń lub witaminę D? Zapisz.',tip:'Może już jesz wzbogacone produkty, nie wiedząc o tym?'},
+{day:2,title:'Płatki śniadaniowe — wybierz mądrze',task:'Kup płatki wzbogacone wapniem i witaminą D. Sprawdź etykietę: minimum 15% RWS wapnia.',tip:'Jedna miska wzbogaconych płatków to nawet 50% dziennego wapnia.'},
+{day:3,title:'Mleko roślinne — porównanie',task:'Porównaj etykiety 3 mlek roślinnych. Wybierz to z największą zawartością wapnia (min. 120mg/100ml).',tip:'Nie każde mleko roślinne jest wzbogacone. Czytaj — to twój nowy nawyk.'},
+{day:4,title:'Sok pomarańczowy z wapniem',task:'Kup sok pomarańczowy wzbogacony wapniem. Wypij szklankę do śniadania.',tip:'Szklanka soku z wapniem to tyle samo wapnia co szklanka mleka.'},
+{day:5,title:'Tofu — wapń z roślin',task:'Kup tofu wzbogacane wapniem (sprawdź etykietę!). Dodaj do stir-fry lub sałatki.',tip:'Tofu wzbogacane wapniem ma go więcej niż mleko krowie. Zaskakujące? Tak.'},
+{day:6,title:'Chleb wzbogacony — alternatywa',task:'Poszukaj pieczywa wzbogacanego wapniem. Coraz więcej piekarni dodaje wapń do chleba.',tip:'Chleb z wapniem to prosty sposób na dodatkową porcję minerału.'},
+{day:7,title:'Lista wzbogaconych — twój przewodnik',task:'Stwórz listę 5 wzbogaconych produktów, które będziesz regularnie kupować. Trzymaj ją w telefonie.',tip:'Teraz już wiesz, jak czytać etykiety. Ta umiejętność zostanie z tobą na zawsze. 📋'},
+]},
+
+'get-sunlight-exposure':{experts:['Psycholog','Coach Zdrowia','Dietetyk'],conversation:[
+{speaker:'Psycholog',text:'15 minut słońca dziennie to najprostszy sposób na witaminę D. Ale trzeba to zrobić regularnie, nie okazyjnie.'},
+{speaker:'Coach Zdrowia',text:'Połączmy słońce z codzienną rutyną: poranna kawa na balkonie, spacer do sklepu, czytanie w parku.'},
+{speaker:'Dietetyk',text:'Pamiętajmy: witamina D ze słońca to tylko okres wiosna-lato w Polsce. Jesienią i zimą potrzebujemy diety i suplementów.'},
+],days:[
+{day:1,title:'Poranna ekspozycja — 10 minut',task:'Wypij poranną kawę lub herbatę na balkonie, w ogrodzie lub przy otwartym oknie. 10 minut twarzą do słońca.',tip:'Poranne słońce jest łagodniejsze i bezpieczniejsze dla skóry.'},
+{day:2,title:'Spacer w porze lunchu',task:'Wyjdź na 15-minutowy spacer w okolicy południa. Odsłoń ramiona i twarz.',tip:'Południowe słońce daje najwięcej witaminy D w najkrótszym czasie.'},
+{day:3,title:'Słońce z zadaniem',task:'Połącz ekspozycję z aktywnością: czytanie na ławce, praca w ogrodzie, rozmowa telefoniczna na zewnątrz.',tip:'Gdy masz cel, 15 minut mija błyskawicznie.'},
+{day:4,title:'Weekendowa dawka',task:'Dziś zostań na słońcu 20-30 minut. Spacer, piknik, rower. Nanieś krem z filtrem po 15 minutach.',tip:'Dłuższa ekspozycja w weekend nadrabia krótsze w tygodniu.'},
+{day:5,title:'Aktywność na słońcu',task:'Połącz ćwiczenia ze słońcem: joga w parku, stretching na tarasie, nordic walking.',tip:'Słońce + ruch = podwójna korzyść: witamina D i mocniejsze kości.'},
+{day:6,title:'Słońce o różnych porach',task:'Wyjdź na słońce o 3 różnych porach: rano, w południe, po południu. Po 5 minut. Poczuj różnicę.',tip:'Każda pora dnia ma inne światło. Twoje ciało korzysta z każdego.'},
+{day:7,title:'Zaplanuj słoneczny tydzień',task:'Wpisz 15-minutowe okienka słoneczne do kalendarza na każdy dzień przyszłego tygodnia.',tip:'15 minut dziennie to 91 godzin słońca rocznie. Twoje kości to czują. ☀️'},
+]},
+
+'weight-bearing-exercise':{experts:['Trener Personalny','Fizjoterapeuta','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Ćwiczenia z obciążeniem brzmią groźnie. Wiele osób myśli: to nie dla mnie, jestem za stary/a. A prawda jest odwrotna.'},
+{speaker:'Fizjoterapeuta',text:'Obciążenie to niekoniecznie sztanga. To spacer, schody, taniec. Kości reagują na wstrząsy — wzmacniają się.'},
+{speaker:'Trener Personalny',text:'Codziennie jedna aktywność obciążająca kości. Proste, bezpieczne, w domu lub na zewnątrz.'},
+],days:[
+{day:1,title:'Spacer z tupaniem — obciążenie',task:'Idź energicznie 20 minut. Świadomie stawiaj stopy — pięta-palce, z lekkim tupnięciem.',tip:'Każdy krok to mikro-wstrząs, który mówi kościom: wzmacniajcie się.'},
+{day:2,title:'Schody — naturalne obciążenie',task:'Wejdź po schodach 3 razy (jeśli możesz). Wchodź energicznie. Jeśli nie ma schodów — wchodzenie na palce 20x.',tip:'Schody to darmowa siłownia. Twoje kości biodrowe to kochają.'},
+{day:3,title:'Przysiady przy krześle — z obciążeniem',task:'Trzymając butelkę 1,5L wody w dłoniach: zrób 10 przysiadów przy krześle.',tip:'Butelka wody to twój pierwszy ciężar. Nic nie kosztuje.'},
+{day:4,title:'Marsz z plecakiem',task:'Włóż do plecaka 2 butelki wody (3kg). Idź na 15-minutowy spacer. Poczuj dodatkowe obciążenie.',tip:'Plecak z obciążeniem to bezpieczny trening kości kręgosłupa.'},
+{day:5,title:'Tańcz! — 15 minut',task:'Włącz ulubioną muzykę. Tańcz 15 minut. Skacz delikatnie, przytupuj. Baw się.',tip:'Taniec to ćwiczenie z obciążeniem w przebraniu. I daje endorfiny.'},
+{day:6,title:'Wchodzenie na podwyższenie',task:'Wchodź na niski stopień (15-20cm) na zmianę nogami. 3 serie po 10 na nogę. Trzymaj się ściany.',tip:'Step w domu to najprostszy trening kości nóg.'},
+{day:7,title:'Podsumowanie — twój plan obciążeniowy',task:'Wybierz 3 ulubione ćwiczenia z tygodnia. Ustal plan: 3x w tygodniu po 20 minut.',tip:'Silne kości to niezależność na lata. Zainwestowałeś/aś w przyszłość. 🦴'},
+]},
+
+'eat-fatty-fish':{experts:['Dietetyk','Coach Zdrowia','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Tłuste ryby to najlepsze źródło witaminy D. Ale wiele osób mówi: nie lubię ryb. Znajdźmy sposób.'},
+{speaker:'Dietetyk',text:'Łosoś, makrela, sardynki, śledź — każda ma inny smak. A do tego ryby w puszce są łatwe i niedrogie.'},
+{speaker:'Coach Zdrowia',text:'Jedna porcja tłustej ryby tygodniowo to minimum. Dwie to optimum. Zacznijmy od jednej.'},
+],days:[
+{day:1,title:'Łosoś wędzony — najłatwiejszy',task:'Kup paczkę łososia wędzonego. Zjedz na kanapce z pełnoziarnistego pieczywa i awokado.',tip:'Wędzony łosoś nie wymaga gotowania. Smakuje każdemu.'},
+{day:2,title:'Makrela w puszce — budżetowo',task:'Kup makrelę w puszce (w oleju lub sosie własnym). Zjedz z pieczywem i ogórkiem kiszonym.',tip:'Puszka makreli to 200% dziennego zapotrzebowania na witaminę D. Za 5 zł.'},
+{day:3,title:'Sardynki — małe, ale potężne',task:'Zjedz sardynki z puszki na sałatce. Są delikatniejsze w smaku niż makrela.',tip:'Sardynki jada się w całości — z ośćmi! Te miękkie ości to dodatkowa porcja wapnia.'},
+{day:4,title:'Łosoś świeży — na patelni',task:'Usmaż filet z łososia na oliwie. Sól, pieprz, koperek. Podawaj z cytryną i warzywami.',tip:'Świeży łosoś to celebracja. Nie musisz jeść go codziennie — raz w tygodniu wystarczy.'},
+{day:5,title:'Śledź — polska tradycja',task:'Zjedz śledzia w oleju lub w śmietanie. Na Wigilię i nie tylko. Polacy to znają.',tip:'Śledź to tłusta ryba z witaminą D. Tradycja ma naukowe podstawy.'},
+{day:6,title:'Pasta rybna — domowa',task:'Zrób pastę z makreli: widelec + odrobina jogurtu + szczypiorek. Smaruj na pieczywie.',tip:'Domowa pasta rybna to zdrowsza alternatywa dla sklepowych pasztetów.'},
+{day:7,title:'Rybny plan — minimum raz w tygodniu',task:'Wybierz ulubioną rybę. Zaplanuj dzień rybny w tygodniu. Wpisz do kalendarza.',tip:'Jedna porcja tłustej ryby tygodniowo = zdrowe kości i lepszy nastrój. 🐟'},
+]},
+
+'discuss-supplements':{experts:['Psycholog','Dietetyk','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Wizyta u lekarza bywa stresująca. Ale rozmowa o suplementach to rozmowa o inwestycji w zdrowie. Warto.'},
+{speaker:'Dietetyk',text:'Nie łykaj suplementów na własną rękę. Nadmiar wapnia może szkodzić. Tylko lekarz zleci odpowiednie badania.'},
+{speaker:'Coach Zdrowia',text:'Przygotowanie do wizyty to połowa sukcesu. Zrobimy z tego plan na 7 dni.'},
+],days:[
+{day:1,title:'Zapisz objawy i pytania',task:'Zapisz wszystkie pytania do lekarza: jakie suplementy, w jakich dawkach, jak długo brać.',tip:'Zapisane pytania nie uciekną podczas wizyty.'},
+{day:2,title:'Sprawdź dotychczasowe badania',task:'Znajdź wyniki ostatnich badań. Sprawdź, czy miałeś/aś badany poziom witaminy D i wapnia.',tip:'Stare wyniki to punkt wyjścia dla lekarza.'},
+{day:3,title:'Umów wizytę',task:'Zadzwoń do przychodni lub umów przez internet. Lekarz rodzinny to dobry początek.',tip:'Jeden telefon dzieli cię od profesjonalnej porady.'},
+{day:4,title:'Przygotuj listę leków',task:'Spisz wszystkie leki i suplementy, które już bierzesz. Lekarz musi wiedzieć o interakcjach.',tip:'Pełna lista to bezpieczeństwo. Nie pomiń niczego.'},
+{day:5,title:'Wizyta — zadaj pytania',task:'Podczas wizyty: zapytaj o dawkę, formę (D3 czy D2?), porę przyjmowania, interakcje.',tip:'Nie wstydź się pytać. To twoje zdrowie i twoje prawo.'},
+{day:6,title:'Kup suplementy — jeśli zalecone',task:'Kup tylko to, co zalecił lekarz. Sprawdź aptekę — nie kupuj przez internet z nieznanych źródeł.',tip:'Jakość suplementu ma znaczenie. Apteka daje gwarancję.'},
+{day:7,title:'Ustaw przypomnienie',task:'Ustaw codzienne przypomnienie w telefonie o przyjmowaniu suplementu. O tej samej porze.',tip:'Regularność to klucz do skuteczności suplementacji. 💊'},
+]},
+
+'bone-density-checks':{experts:['Psycholog','Fizjoterapeuta','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Badanie gęstości kości — densytometria — brzmi groźnie, ale jest bezbolesne i trwa 15 minut. A daje bezcenną wiedzę.'},
+{speaker:'Fizjoterapeuta',text:'Po 50-tce densytometria raz na 2 lata. Po 65-tce — co roku. Wczesne wykrycie osteopenii pozwala zatrzymać osteoporozę.'},
+{speaker:'Coach Zdrowia',text:'Zróbmy z tego misję na 7 dni. Od znalezienia placówki po umówienie terminu.'},
+],days:[
+{day:1,title:'Dowiedz się, gdzie zrobić badanie',task:'Wyszukaj "densytometria" + twoje miasto. Sprawdź, które placówki mają skierowania NFZ.',tip:'Densytometria jest refundowana dla osób 65+ i z grup ryzyka.'},
+{day:2,title:'Sprawdź, czy potrzebujesz skierowania',task:'Zapytaj lekarza rodzinnego o skierowanie. Możesz też zrobić prywatnie (koszt ok. 100-200 zł).',tip:'Skierowanie od lekarza to oszczędność. Zapytaj przy okazji wizyty.'},
+{day:3,title:'Umów termin',task:'Zadzwoń i umów badanie. Nie odkładaj — terminy bywają odległe.',tip:'Im szybciej umówisz, tym szybciej poznasz stan swoich kości.'},
+{day:4,title:'Przygotuj się do badania',task:'W dniu badania nie bierz suplementów wapnia. Ubierz się wygodnie, bez metalowych elementów.',tip:'Badanie jest bezbolesne. Leżysz 15 minut — to jak leżenie na plaży, tylko chłodniej.'},
+{day:5,title:'Wykonaj badanie',task:'Idź na densytometrię. To tylko 15 minut. Po badaniu odbierz wynik.',tip:'Zrobiłeś/aś to! Teraz już wiesz, jaki jest stan twoich kości.'},
+{day:6,title:'Zinterpretuj wynik z lekarzem',task:'Umów się na omówienie wyniku. Lekarz wyjaśni wskaźnik T-score: powyżej -1 = norma, -1 do -2.5 = osteopenia.',tip:'Nie interpretuj wyniku sam/a. Lekarz powie ci, co robić dalej.'},
+{day:7,title:'Zaplanuj następne badanie',task:'Wpisz do kalendarza przypomnienie o kolejnym badaniu za 2 lata (lub wcześniej, jeśli zalecono).',tip:'Regularne kontrole to spokój. Wiesz, że dbasz o kości. 🩻'},
+]},
+
+'safe-sun-exposure':{experts:['Dermatolog','Coach Zdrowia','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Słońce to miecz obosieczny — daje witaminę D, ale może szkodzić skórze. Klucz to równowaga, nie unikanie.'},
+{speaker:'Dermatolog',text:'15-20 minut bez filtra jest bezpieczne dla większości osób. Potem nakładamy SPF 30+. Złoty środek.'},
+{speaker:'Coach Zdrowia',text:'Wyrobienie nawyku: słońce + krem. Jak mycie zębów — automatyczne.'},
+],days:[
+{day:1,title:'Poznaj swój fototyp',task:'Określ fototyp skóry: I (bardzo jasna) do VI (ciemna). Im jaśniejsza skóra, tym krótsza bezpieczna ekspozycja.',tip:'Fototyp I: 10-15 min. Fototyp III: 20-30 min. Znaj swoje limity.'},
+{day:2,title:'Kup krem z SPF 30',task:'Kup krem z filtrem SPF 30 lub 50. Niech stanie przy szczoteczce do zębów — będzie przypomnieniem.',tip:'Krem na widoku to krem użyty. Ukryty w szafce = zapomniany.'},
+{day:3,title:'Poranna rutyna: słońce, potem SPF',task:'Wyjdź na 15 minut. Po powrocie nałóż krem na twarz i odsłonięte części ciała.',tip:'15 minut bez filtra, potem filtr. Równowaga osiągnięta.'},
+{day:4,title:'Ochrona w południe',task:'Między 11 a 15 słońce jest najsilniejsze. Noś kapelusz i okulary. Nałóż SPF przed wyjściem.',tip:'W godzinach szczytu lepiej chronić niż produkować witaminę D.'},
+{day:5,title:'Krem w trudno dostępne miejsca',task:'Nie zapomnij o uszach, karku, wierzchu dłoni i stóp. To częste miejsca poparzeń.',tip:'Rak skóry najczęściej atakuje tam, gdzie zapominamy o kremie.'},
+{day:6,title:'Słońce przez szybę — witamina D nie przechodzi',task:'Pamiętaj: szyba blokuje UVB potrzebne do produkcji witaminy D. Musisz wyjść na zewnątrz.',tip:'Siedzenie przy oknie nie zastąpi wyjścia na dwór.'},
+{day:7,title:'Stwórz zasadę: 15+SPF',task:'Zapamiętaj regułę: 15 minut słońca, potem SPF. Zapisz ją na kartce przy lustrze.',tip:'Prosta zasada, zdrowe kości i bezpieczna skóra. Dasz radę. ☀️🧴'},
+]},
+
+'vitamin-d-foods':{experts:['Dietetyk','Coach Zdrowia','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Witamina D z jedzenia to plan B — na jesień i zimę. Ale trzeba wiedzieć, co jeść i jak często.'},
+{speaker:'Dietetyk',text:'Jajka, grzyby, wzbogacone soki — każdego dnia coś innego. Zbudujmy talerz witaminy D.'},
+{speaker:'Coach Zdrowia',text:'W Polsce od października do marca słońce nie daje witaminy D. Dieta i suplementy to konieczność.'},
+],days:[
+{day:1,title:'Jajka — żółtko to skarb',task:'Zjedz 2 jajka na śniadanie. Żółtko zawiera witaminę D. Nie oddzielaj go!',tip:'Jajka z wolnego wybiegu mają więcej witaminy D.'},
+{day:2,title:'Grzyby — witamina D z lasu',task:'Kup grzyby (pieczarki, shitake, borowiki). Zjedz jako dodatek do obiadu.',tip:'Grzyby wystawione na słońce zwiększają zawartość witaminy D 10-krotnie.'},
+{day:3,title:'Wzbogacony sok pomarańczowy',task:'Wypij szklankę soku wzbogacanego witaminą D. Sprawdź etykietę.',tip:'Jedna szklanka to nawet 25% dziennego zapotrzebowania na witaminę D.'},
+{day:4,title:'Mleko lub jogurt wzbogacany',task:'Kup mleko lub jogurt z dodatkiem witaminy D. Coraz więcej produktów jest fortyfikowanych.',tip:'Nabiał + witamina D = synergia. Wapń lepiej się wchłania.'},
+{day:5,title:'Wątróbka — bogactwo witamin',task:'Jeśli jesz mięso: zjedz porcję wątróbki (kurza jest najdelikatniejsza). Bogata w witaminę D i żelazo.',tip:'Wątróbka raz na 2 tygodnie wystarczy. Nie przesadzaj — zawiera też witaminę A.'},
+{day:6,title:'Kombinacja witaminy D',task:'Zjedz posiłek łączący źródła witaminy D: omlet z grzybami + szklanka wzbogacanego mleka.',tip:'Różne źródła = lepsze pokrycie zapotrzebowania.'},
+{day:7,title:'Plan witaminy D na zimę',task:'Stwórz listę 5 produktów bogatych w witaminę D. Kupuj je regularnie od października do marca.',tip:'Zimą polegaj na jedzeniu i suplementach. Słońce wróci w kwietniu. 🍳'},
+]},
+
+'maintain-hydration-bones':{experts:['Dietetyk','Fizjoterapeuta','Coach Zdrowia'],conversation:[
+{speaker:'Fizjoterapeuta',text:'Woda to nie tylko nawodnienie. Kości to w 25% woda. Odwodnienie osłabia strukturę kostną.'},
+{speaker:'Dietetyk',text:'Wapń potrzebuje wody do transportu. Bez odpowiedniego nawodnienia nawet najlepsza dieta nie pomoże kościom.'},
+{speaker:'Coach Zdrowia',text:'Minimum 1,5 litra dziennie. Zaczynamy od szklanki wody zaraz po przebudzeniu.'},
+],days:[
+{day:1,title:'Szklanka na dobry początek',task:'Wypij szklankę wody (250ml) zaraz po przebudzeniu. Postaw szklankę przy łóżku wieczorem.',tip:'Po 8 godzinach snu twoje ciało jest odwodnione. Daj mu wodę.'},
+{day:2,title:'Butelka na biurku',task:'Napełnij butelkę 1,5L rano. Postaw na biurku. Pij małymi łykami przez cały dzień.',tip:'To, co widzisz — pijesz. Butelka w zasięgu wzroku to podstawa.'},
+{day:3,title:'Woda przed posiłkiem',task:'Wypij szklankę wody 15 minut przed każdym posiłkiem. To też pomaga kontrolować porcje.',tip:'Woda przed jedzeniem = lepsze wchłanianie składników mineralnych.'},
+{day:4,title:'Woda z minerałami',task:'Wybierz wodę mineralną z zawartością wapnia (min. 150mg/l). Sprawdź etykietę.',tip:'Woda mineralna może dostarczać nawet 30% dziennego zapotrzebowania na wapń.'},
+{day:5,title:'Herbata ziołowa — też się liczy',task:'Wypij 2 filiżanki herbaty ziołowej (mięta, rumianek, pokrzywa) w ciągu dnia.',tip:'Herbata ziołowa to woda w przebraniu. I dodatkowe minerały.'},
+{day:6,title:'Zupa na obiad',task:'Zjedz zupę na obiad. Bulionowa, krem, jarzynowa — każda to dodatkowa porcja płynów.',tip:'Zupa to sprytny sposób na nawodnienie. I ciepło w zimny dzień.'},
+{day:7,title:'Twój system nawodnienia',task:'Ustal system: szklanka rano + butelka w ciągu dnia + herbata po południu + zupa.',tip:'1,5 litra dziennie? Zrobiłeś/aś to. Twoje kości są wdzięczne. 💧'},
+]},
+
+'track-calcium-intake':{experts:['Dietetyk','Psycholog','Trener Rozwoju Osobistego'],conversation:[
+{speaker:'Psycholog',text:'Monitorowanie wapnia może wydawać się uciążliwe. Ale nie chodzi o perfekcyjne liczenie — chodzi o świadomość.'},
+{speaker:'Dietetyk',text:'Dorośli potrzebują 1000-1200mg wapnia dziennie. Szklanka mleka to 300mg. Łatwo policzyć orientacyjnie.'},
+{speaker:'Trener Rozwoju Osobistego',text:'Prosty dzienniczek: nabiał, zielone warzywa, wzbogacone produkty. 3 kategorie, 5 minut dziennie.'},
+],days:[
+{day:1,title:'Dowiedz się, ile potrzebujesz',task:'Sprawdź normę dla swojego wieku: dorośli 1000mg, kobiety 50+ i mężczyźni 70+: 1200mg.',tip:'Znajomość celu to połowa sukcesu.'},
+{day:2,title:'Poznaj źródła wapnia',task:'Zapisz 5 produktów bogatych w wapń i ich zawartość: jogurt 200ml = 300mg, ser biały 100g = 90mg, szpinak 100g = 100mg.',tip:'Ściągawka w telefonie to twój sprytny pomocnik.'},
+{day:3,title:'Policz dzisiejszy wapń',task:'Oszacuj, ile wapnia zjadłeś/aś dziś. Użyj ściągawki. Nie musi być idealnie.',tip:'Szacowanie to nie egzamin. Chodzi o przybliżony obraz.'},
+{day:4,title:'Znajdź luki',task:'Czy osiągnąłeś/aś 1000mg? Jeśli nie — gdzie możesz dodać jeden produkt bogaty w wapń?',tip:'Jeden jogurt lub garść jarmużu może wypełnić lukę.'},
+{day:5,title:'Aplikacja do śledzenia',task:'Pobierz darmową aplikację do śledzenia składników odżywczych (np. Fitatu). Wpisz dzisiejsze posiłki.',tip:'Aplikacja liczy za ciebie. Technologia w służbie zdrowia.'},
+{day:6,title:'Dzień optymalny',task:'Zaplanuj dzień, w którym osiągniesz 100% zapotrzebowania na wapń. Zrealizuj go.',tip:'Teraz już wiesz, jak to zrobić. To nie jest trudne.'},
+{day:7,title:'Nawyk, nie obsesja',task:'Nie waż wszystkiego codziennie. Raz w tygodniu zrób szybki szacunek. Resztę niech robi rutyna.',tip:'Świadomość, nie perfekcja. Twoje kości dostają, czego potrzebują. 📊'},
+]},
+
+'balanced-diet-bones':{experts:['Dietetyk','Coach Zdrowia','Psycholog'],conversation:[
+{speaker:'Psycholog',text:'Zbilansowana dieta dla kości to nie tylko wapń. To symfonia składników: magnez, witamina K, cynk, białko.'},
+{speaker:'Dietetyk',text:'Każdego dnia dodajemy jeden składnik-pomocnik. Magnez z migdałów, witamina K z natki pietruszki, cynk z pestek dyni.'},
+{speaker:'Coach Zdrowia',text:'Różnorodność to klucz. Im więcej kolorów na talerzu, tym lepiej dla kości.'},
+],days:[
+{day:1,title:'Magnez — partner wapnia',task:'Zjedz garść migdałów lub pestek dyni. Magnez jest niezbędny do wchłaniania wapnia.',tip:'Bez magnezu wapń nie trafi do kości. To duet.'},
+{day:2,title:'Witamina K — zielenina',task:'Dodaj natkę pietruszki lub świeży szpinak do obiadu. Witamina K kieruje wapń do kości.',tip:'Witamina K to kontroler lotów wapnia. Bez niej wapń ląduje w tętnicach, nie kościach.'},
+{day:3,title:'Cynk — budulec kości',task:'Zjedz porcję wołowiny, pestek dyni lub ciecierzycy. Cynk wspomaga tworzenie kolagenu w kościach.',tip:'Cynk to jak zaprawa murarska dla kości. Spaja wszystko.'},
+{day:4,title:'Białko — struktura',task:'Upewnij się, że każdy posiłek ma źródło białka: jajko, ryba, rośliny strączkowe.',tip:'Kość to w 50% białko (kolagen). Nie tylko minerały.'},
+{day:5,title:'Potas — równowaga',task:'Zjedz banana lub ziemniaka. Potas neutralizuje kwasy odciągające wapń z kości.',tip:'Potas chroni wapń przed wypłukiwaniem. Banany to tarcza dla kości.'},
+{day:6,title:'Witamina C — kolagen',task:'Zjedz paprykę, cytrusy lub kiwi. Witamina C jest niezbędna do produkcji kolagenu w kościach.',tip:'Kolagen to rusztowanie kości. Witamina C je buduje.'},
+{day:7,title:'Tęczowy talerz — pełnia składników',task:'Stwórz talerz zawierający wszystkie poznane składniki. Zrób zdjęcie — to twoje dzieło.',tip:'Zbilansowana dieta to nie wyrzeczenia — to różnorodność. Twoje kości są silne. 🌈'},
+]},
+
+'limit-alcohol-bones':{experts:['Psycholog','Dietetyk','Coach Zdrowia'],conversation:[
+{speaker:'Psycholog',text:'Alkohol wypłukuje wapń i zaburza wchłanianie witaminy D. Ale ograniczenie picia to delikatny temat.'},
+{speaker:'Dietetyk',text:'Nie trzeba rezygnować całkowicie. 1 drink dziennie dla kobiet, 2 dla mężczyzn to bezpieczny limit dla kości.'},
+{speaker:'Coach Zdrowia',text:'Zacznijmy od świadomości — zapisz, ile naprawdę pijesz. Potem małe kroki w stronę ograniczenia.'},
+],days:[
+{day:1,title:'Tydzień prawdy — zapisuj',task:'Zapisuj każdy alkoholowy napój przez najbliższy tydzień. Bez oceniania.',tip:'Świadomość to pierwszy krok. Zapisuj szczerze.'},
+{day:2,title:'Poznaj bezpieczne limity',task:'Sprawdź: dla kobiet max 1 porcja dziennie (150ml wina, 350ml piwa), dla mężczyzn max 2.',tip:'Limity dla kości są niższe niż dla wątroby. Kości są bardziej wrażliwe.'},
+{day:3,title:'Dzień bez alkoholu',task:'Dziś nie pij nic alkoholowego. Zastąp wodą mineralną z cytryną.',tip:'Jeden dzień przerwy to już 15% mniej alkoholu w tygodniu.'},
+{day:4,title:'Woda między drinkami',task:'Jeśli pijesz alkohol: po każdym drinku wypij szklankę wody. Spowolnisz i nawodnisz.',tip:'Woda między drinkami to trick, który zmniejsza spożycie o połowę.'},
+{day:5,title:'Alternatywy — co pić zamiast',task:'Znajdź bezalkoholowe alternatywy: kombucha, woda z miętą, bezalkoholowe piwo 0%.',tip:'Bezalkoholowe piwo ma tyle samo wapnia co zwykłe — minus alkohol.'},
+{day:6,title:'Społecznie bez alkoholu',task:'Na spotkaniu zamów napój bezalkoholowy. Zobaczysz — nikt nie zauważy.',tip:'Presja społeczna jest głównie w twojej głowie.'},
+{day:7,title:'Podsumuj tydzień i ustal cel',task:'Ile porcji alkoholu wypiłeś/aś w tym tygodniu? Ustal cel na przyszły: max 7 (kobiety) lub 14 (mężczyźni).',tip:'Mniej alkoholu = mocniejsze kości. Twoje zdrowie, twój wybór. 🍷→💧'},
+]},
+
+'quit-smoking-bones':{experts:['Psycholog','Coach Zdrowia','Dietetyk'],conversation:[
+{speaker:'Psycholog',text:'Palenie to jeden z najsilniejszych wrogów kości. Zmniejsza gęstość kości o 10-30%. Ale rzucenie jest możliwe.'},
+{speaker:'Coach Zdrowia',text:'Kości regenerują się po rzuceniu palenia. Po roku bez papierosów ryzyko złamania spada o połowę.'},
+{speaker:'Dietetyk',text:'Podczas rzucania zwiększ spożycie antyoksydantów — pomogą organizmowi się oczyścić.'},
+],days:[
+{day:1,title:'Znajdź swój powód — zapisz go',task:'Zapisz na kartce dlaczego chcesz rzucić: dla kości, dla rodziny, dla oddechu. Przyklej na lodówce.',tip:'Silny powód pokona silne uzależnienie. Znajdź swój.'},
+{day:2,title:'Poznaj metody rzucania',task:'Poczytaj o metodach: terapia zastępcza (plastry, gumy), leki (bupropion, wareniklina), akupunktura.',tip:'Nie musisz rzucać sam/a. Metody medyczne podwajają szanse na sukces.'},
+{day:3,title:'Wybierz datę rzucenia',task:'Wybierz konkretną datę w ciągu najbliższych 2 tygodni. Zapisz w kalendarzu.',tip:'Data zmienia "kiedyś" w "wtedy". To potężna różnica.'},
+{day:4,title:'Znajdź wsparcie',task:'Powiedz bliskim o swojej decyzji. Znajdź kogoś, kto też rzuca lub już rzucił.',tip:'Wsparcie podwaja szanse. Nie walcz sam/a.'},
+{day:5,title:'Zastąp rytuał palenia',task:'Zidentyfikuj momenty, kiedy sięgasz po papierosa. Zaplanuj, co zrobisz zamiast: spacer, guma, głębokie oddechy.',tip:'Rytuał można zastąpić innym rytuałem. Klucz to plan.'},
+{day:6,title:'Dieta wspierająca rzucanie',task:'Jedz więcej owoców i warzyw (antyoksydanty), pij wodę, unikaj kawy (wyzwala chęć palenia).',tip:'To, co jesz, wpływa na chęć palenia. Wybieraj mądrze.'},
+{day:7,title:'Nagroda za tydzień przygotowań',task:'Jesteś gotowy/a do rzucenia. Nagródź się za przygotowania — zasłużyłeś/aś.',tip:'Przygotowanie to już połowa sukcesu. Data rzucenia to twój pierwszy dzień nowego życia. 🚭'},
+]},
 };
 export default CHALLENGES;
