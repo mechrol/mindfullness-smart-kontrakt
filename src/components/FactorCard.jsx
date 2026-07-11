@@ -42,7 +42,7 @@ export default function FactorCard({
         {onGenerateReport && (
           <button className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md shadow-indigo-200 text-sm"
             onClick={() => onGenerateReport(factor.id, userContext)}>
-            📄 Wygeneruj raport MSWRP
+            🧩 Mam problem. Podaj mi możliwości.
           </button>
         )}
       </div>

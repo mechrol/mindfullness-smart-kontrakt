@@ -240,8 +240,8 @@ export default function App() {
             <div className="flex items-center gap-3 mb-2">
               <span className="text-3xl">📊</span>
               <div>
-                <h2 className="text-2xl font-bold text-stone-800">Raporty MSWRP</h2>
-                <p className="text-stone-500 text-sm">Dynamiczne raporty generowane na podstawie Twojego kontekstu.</p>
+                <h2 className="text-2xl font-bold text-stone-800">Możliwości rozwiązania — Smart Kontrakt</h2>
+                <p className="text-stone-500 text-sm">Raport zawiera warianty metod. Wybierz ten, który pasuje do Twojej sytuacji.</p>
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ export default function App() {
             <div className="bg-white rounded-2xl shadow-lg border border-stone-200 p-8 text-center animate-slide-up">
               <div className="text-5xl mb-4">📄</div>
               <p className="text-stone-600">Nie masz jeszcze żadnych raportów.</p>
-              <p className="text-stone-400 text-sm mt-2">Przejdź do zakładki <strong>Mindfullness</strong>, wypełnij kontekst dla czynnika i kliknij <strong>Wygeneruj raport MSWRP</strong>.</p>
+              <p className="text-stone-400 text-sm mt-2">Przejdź do zakładki <strong>Mindfullness</strong>, wypełnij kontekst dla czynnika i kliknij <strong>„Mam problem. Podaj mi możliwości."</strong></p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -263,15 +263,48 @@ export default function App() {
                     </div>
                     <span className="inline-flex bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded">MSWRP</span>
                   </div>
-                  <p className="text-stone-600 text-sm mb-2"><strong className="text-stone-800">Zasada:</strong> {r.zasada.definicja.slice(0, 200)}{(r.zasada.definicja.length > 200 ? '…' : '')}</p>
-                  <details className="mb-3">
-                    <summary className="text-xs font-semibold text-green-700 cursor-pointer">Procedura (Q) — 7 dni</summary>
-                    <pre className="text-xs text-stone-600 mt-2 whitespace-pre-wrap">{r.procedura}</pre>
-                  </details>
-                  {r.ograniczenia && r.ograniczenia !== 'brak zgłoszonych ograniczeń' && (
+                  <p className="text-stone-500 text-xs italic mb-3">{r.instrukcja_wyboru}</p>
+                  <div className="space-y-2 mb-3">
+                    {(r.mozliwosci || []).map((m, i) => (
+                      <details key={m.id} className="bg-stone-50 rounded-lg overflow-hidden border border-stone-200">
+                        <summary className="px-3 py-2 cursor-pointer font-semibold text-stone-800 text-sm flex items-center gap-2 hover:bg-stone-100">
+                          <span className="flex-shrink-0 w-6 h-6 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center text-xs font-bold">{i + 1}</span>
+                          <span>{m.label}</span>
+                        </summary>
+                        <div className="p-3 bg-white space-y-2 text-xs text-stone-700">
+                          <p className="italic">{m.opis}</p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div><span className="font-bold text-green-700">R:</span> {m.zasada.R_regula}</div>
+                            <div><span className="font-bold text-blue-700">U:</span> {m.zasada.U_podejscie}</div>
+                            <div><span className="font-bold text-amber-700">J:</span> {m.zasada.J_metryka}</div>
+                            <div><span className="font-bold text-purple-700">W:</span> {m.zasada.W_wyposazenie}</div>
+                          </div>
+                          <details><summary className="font-bold text-indigo-700 cursor-pointer">Q — Procedura 7 dni</summary><p className="mt-1">{m.procedura_7dni}</p></details>
+                          <div><span className="font-bold text-stone-800">✅ Silne:</span> {m.silne_strony}</div>
+                          <div><span className="font-bold text-stone-800">⚠ Ryzyka:</span> {m.ryzyka}</div>
+                          <div><span className="font-bold text-stone-800">🎯 Rekomendowany:</span> {m.rekomendowany_kontekst}</div>
+                          {m.ograniczenia_typowe && m.ograniczenia_typowe !== 'brak zgłoszonych' && (
+                            <div><span className="font-bold text-red-700">🚧 Bariery:</span> {m.ograniczenia_typowe}</div>
+                          )}
+                          <button
+                            onClick={() => {
+                              const choice = { report_id: r.meta.report_id, approach_id: m.id, approach_label: m.label, factor_name: r.meta.factor_name, created_at: new Date().toISOString() };
+                              const cur = JSON.parse(localStorage.getItem('mswrp_choices') || '[]');
+                              cur.unshift(choice);
+                              localStorage.setItem('mswrp_choices', JSON.stringify(cur));
+                              alert('Wybrano: ' + m.label + '. Wybór zapisany lokalnie.');
+                            }}
+                            className="mt-1 w-full px-3 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700 active:scale-95 transition-all">
+                            ✓ Wybieram tę możliwość
+                          </button>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                  {r.user_context && (
                     <details className="mb-3">
-                      <summary className="text-xs font-semibold text-red-700 cursor-pointer">Ograniczenia (E)</summary>
-                      <pre className="text-xs text-stone-600 mt-2 whitespace-pre-wrap">{r.ograniczenia}</pre>
+                      <summary className="text-xs font-semibold text-stone-600 cursor-pointer">Kontekst użytkownika</summary>
+                      <pre className="text-xs text-stone-600 mt-2 whitespace-pre-wrap">{r.user_context}</pre>
                     </details>
                   )}
                   <div className="flex gap-2">
