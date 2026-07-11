@@ -38,11 +38,16 @@ export default function FactorCard({
       <div className="mb-5">
         <label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">Twój kontekst (ograniczenia i uwagi):</label>
         <textarea className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 text-stone-700 text-sm focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200 focus:bg-white transition-all duration-200 resize-none"
-          value={userContext||''} onChange={e=>onContextChange(e.target.value)} placeholder="Opisz ograniczenia, trudności, cele, sytuację zdrowotną. Zostanie użyty w raporcie MSWRP..." rows={3} />
-        <button className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md shadow-indigo-200 text-sm"
-            onClick={() => onGenerateReport(factor.id, userContext)}>
-            🧩 Mam problem — potrzebuję możliwości
-          </button>
+          value={userContext||''} onChange={e=>onContextChange(e.target.value)} placeholder="Opisz ograniczenia, trudności, cele, sytuację zdrowotną, czas, zasoby. Treść zostanie dołączona do raportu możliwości." rows={3} />
+        <div className="flex items-center justify-between mt-2">
+          <span className="text-xs text-stone-400">📎 Kontekst zostanie użyty przy generowaniu raportu <strong className="text-stone-600">{userContext && userContext.trim() ? `(${userContext.length} znaków)` : '(wpisz, aby uwzględnić)'}</strong></span>
+          {onGenerateReport && (
+            <button className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md shadow-indigo-200 text-sm"
+              onClick={() => onGenerateReport(factor.id, userContext)}>
+              🧩 Mam problem — potrzebuję możliwości
+            </button>
+          )}
+        </div>
       </div>
       <div className="flex flex-wrap gap-3">
         {(status==='not_started')&&(<>
