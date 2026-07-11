@@ -41,18 +41,9 @@ export default function App() {
 
   const handleStart = useCallback((id) => { setFactorInProgress(id); }, [setFactorInProgress]);
 
-  const handleProblem = useCallback(async (id) => {
+  const handleProblem = useCallback((id) => {
     markFactorProblem(id);
-    const factor = activeModule.factors.find((f) => f.id === id);
-    if (!factor) return;
-    setIsGenerating(true);
-    try {
-      const rec = await generateRecommendation(factor, userContext);
-      setRecommendation(id, rec);
-    } catch (err) {
-      setRecommendation(id, { error: 'Failed to generate: ' + err.message });
-    } finally { setIsGenerating(false); }
-  }, [activeModule, markFactorProblem, setRecommendation, userContext]);
+  }, [markFactorProblem]);
 
   const handleDone = useCallback((id) => { markFactorDone(id); }, [markFactorDone]);
 
