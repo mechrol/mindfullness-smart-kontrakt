@@ -3,6 +3,7 @@ import useModuleState from './hooks/useModuleState.js';
 import { THEMES } from './data/themes.js';
 import { generateRecommendation } from './services/foxoraApi.js';
 import CHALLENGES from './data/challenges.js';
+import { buildMswrpReport, reportToText } from './services/mswrpReport.js';
 import ModuleDropdown from './components/ModuleDropdown.jsx';
 import FactorDropdown from './components/FactorDropdown.jsx';
 import FactorCard from './components/FactorCard.jsx';
@@ -26,7 +27,7 @@ export default function App() {
     modules, activeModule, activeModuleId, activeFactorId, factorStates, userContext,
     nextFactor, doneCount, total, progress,
     selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress,
-    setRecommendation, setUserContext, setChallenge,
+    setRecommendation, setUserContext, setChallenge, saveMswrpReport,
   } = useModuleState(themeId);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -55,6 +56,26 @@ export default function App() {
   const handleCloseChallenge = useCallback((factorId) => {
     setChallenge(factorId, null);
   }, [setChallenge]);
+
+  const handleGenerateReport = useCallback((factorId, ctxText) => {
+    const factor = activeModule.factors.find((f) => f.id === factorId);
+    if (!factor) return;
+    const report = buildMswrpReport(factor, ctxText);
+    if (report) saveMswrpReport(report);
+  }, [activeModule, saveMswrpReport]);
+
+  const downloadReport = (report) => {
+    const text = reportToText(report);
+    const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (report.meta.skill_name || 'mswrp-report') + '-' + report.meta.generated_at + '.md';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   useEffect(() => {}, [activeFactorId, nextFactor]);
 
@@ -215,17 +236,56 @@ export default function App() {
       {/* Tab: Raport */}
       {activeTab === 'raport' && (
         <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 pb-12 w-full pt-6">
-          <div className="bg-white rounded-2xl shadow-lg border border-stone-200 p-8 text-center animate-slide-up">
-            <div className="text-5xl mb-4">📊</div>
-            <h2 className="text-2xl font-bold text-stone-800 mb-3">Raport</h2>
-            <p className="text-stone-500 leading-relaxed mb-6 max-w-md mx-auto">
-              Tutaj zobaczysz podsumowania swoich postępów, statystyki wdrożonych czynników i analizę efektywności poszczególnych metod.
-            </p>
-            <a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-200 shadow-lg shadow-green-200">
-              🌐 Otwórz wersję rozszerzoną →
-            </a>
+          <div className="bg-white rounded-2xl shadow-lg border border-stone-200 p-6 mb-6 animate-slide-up">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-3xl">📊</span>
+              <div>
+                <h2 className="text-2xl font-bold text-stone-800">Raporty MSWRP</h2>
+                <p className="text-stone-500 text-sm">Dynamiczne raporty generowane na podstawie Twojego kontekstu.</p>
+              </div>
+            </div>
           </div>
+
+          {(factorStates._reports || []).length === 0 ? (
+            <div className="bg-white rounded-2xl shadow-lg border border-stone-200 p-8 text-center animate-slide-up">
+              <div className="text-5xl mb-4">📄</div>
+              <p className="text-stone-600">Nie masz jeszcze żadnych raportów.</p>
+              <p className="text-stone-400 text-sm mt-2">Przejdź do zakładki <strong>Mindfullness</strong>, wypełnij kontekst dla czynnika i kliknij <strong>Wygeneruj raport MSWRP</strong>.</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {(factorStates._reports || []).map((r) => (
+                <div key={r.meta.report_id} className="bg-white rounded-2xl shadow-lg border border-stone-200 p-5 animate-slide-up">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="font-bold text-stone-800 text-sm">{r.meta.factor_name}</h3>
+                      <p className="text-stone-400 text-xs mt-0.5">{r.meta.generated_at} · skill: {r.meta.skill_name}</p>
+                    </div>
+                    <span className="inline-flex bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-1 rounded">MSWRP</span>
+                  </div>
+                  <p className="text-stone-600 text-sm mb-2"><strong className="text-stone-800">Zasada:</strong> {r.zasada.definicja.slice(0, 200)}{(r.zasada.definicja.length > 200 ? '…' : '')}</p>
+                  <details className="mb-3">
+                    <summary className="text-xs font-semibold text-green-700 cursor-pointer">Procedura (Q) — 7 dni</summary>
+                    <pre className="text-xs text-stone-600 mt-2 whitespace-pre-wrap">{r.procedura}</pre>
+                  </details>
+                  {r.ograniczenia && r.ograniczenia !== 'brak zgłoszonych ograniczeń' && (
+                    <details className="mb-3">
+                      <summary className="text-xs font-semibold text-red-700 cursor-pointer">Ograniczenia (E)</summary>
+                      <pre className="text-xs text-stone-600 mt-2 whitespace-pre-wrap">{r.ograniczenia}</pre>
+                    </details>
+                  )}
+                  <div className="flex gap-2">
+                    <button onClick={() => downloadReport(r)} className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700 active:scale-95 transition-all">
+                      ⬇ Pobierz .md
+                    </button>
+                    <button onClick={() => navigator.clipboard.writeText(reportToText(r))} className="inline-flex items-center gap-1 px-3 py-1.5 bg-stone-200 text-stone-700 text-xs font-semibold rounded-lg hover:bg-stone-300 active:scale-95 transition-all">
+                      📋 Kopiuj
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </main>
       )}
 

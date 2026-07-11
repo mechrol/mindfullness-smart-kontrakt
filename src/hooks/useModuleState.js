@@ -57,6 +57,13 @@ export default function useModuleState(themeId = 'mindfullness') {
   const setChallenge = useCallback((factorId, challenge) => { setFactorStates((prev) => ({ ...prev, [factorId]: { ...prev[factorId], challenge } })); }, []);
   const setUserContext = useCallback((text) => { setUserContextState(text); }, []);
 
+  const saveMswrpReport = useCallback((report) => {
+    setFactorStates((prev) => {
+      const list = prev._reports || [];
+      return { ...prev, _reports: [report, ...list] };
+    });
+  }, []);
+
   return { modules, activeModule, activeModuleId, activeFactorId, factorStates, userContext, unimplemented, nextFactor, doneCount, total, progress,
-    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext, setChallenge };
+    selectModule, selectFactor, markFactorDone, markFactorProblem, setFactorInProgress, setRecommendation, setUserContext, setChallenge, saveMswrpReport };
 }
