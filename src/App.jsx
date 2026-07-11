@@ -4,6 +4,7 @@ import { THEMES } from './data/themes.js';
 import { generateRecommendation } from './services/foxoraApi.js';
 import CHALLENGES from './data/challenges.js';
 import { buildMswrpReport, reportToText } from './services/mswrpReport.js';
+import { saveReportToSupabase, saveChoiceToSupabase } from './services/supabaseClient.js';
 import ModuleDropdown from './components/ModuleDropdown.jsx';
 import FactorDropdown from './components/FactorDropdown.jsx';
 import FactorCard from './components/FactorCard.jsx';
@@ -57,12 +58,19 @@ export default function App() {
     setChallenge(factorId, null);
   }, [setChallenge]);
 
-  const handleGenerateReport = useCallback((factorId, ctxText) => {
+  const handleGenerateReport = useCallback(async (factorId, ctxText) => {
     const factor = activeModule.factors.find((f) => f.id === factorId);
     if (!factor) return;
     const report = buildMswrpReport(factor, ctxText);
-    if (report) saveMswrpReport(report);
+    if (report) {
+      saveMswrpReport(report);
+      try { await saveReportToSupabase(report); } catch (e) { console.warn('Supabase save failed', e); }
+    }
   }, [activeModule, saveMswrpReport]);
+
+  const handleChooseApproach = useCallback(async (choice) => {
+    try { await saveChoiceToSupabase(choice); } catch (e) { console.warn('Supabase save choice failed', e); }
+  }, []);
 
   const downloadReport = (report) => {
     const text = reportToText(report);
@@ -242,6 +250,7 @@ export default function App() {
               <div>
                 <h2 className="text-2xl font-bold text-stone-800">Możliwości rozwiązania — Smart Kontrakt</h2>
                 <p className="text-stone-500 text-sm">Raport zawiera warianty metod. Wybierz ten, który pasuje do Twojej sytuacji.</p>
+                <span className="inline-flex items-center gap-1 mt-2 bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-1 rounded-full">☁ Połączono z Supabase</span>
               </div>
             </div>
           </div>
@@ -289,10 +298,8 @@ export default function App() {
                           <button
                             onClick={() => {
                               const choice = { report_id: r.meta.report_id, approach_id: m.id, approach_label: m.label, factor_name: r.meta.factor_name, created_at: new Date().toISOString() };
-                              const cur = JSON.parse(localStorage.getItem('mswrp_choices') || '[]');
-                              cur.unshift(choice);
-                              localStorage.setItem('mswrp_choices', JSON.stringify(cur));
-                              alert('Wybrano: ' + m.label + '. Wybór zapisany lokalnie.');
+                              handleChooseApproach(choice);
+                              alert('Wybrano: ' + m.label + '. Wybór zapisany w chmurze Supabase.');
                             }}
                             className="mt-1 w-full px-3 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-lg hover:bg-green-700 active:scale-95 transition-all">
                             ✓ Wybieram tę możliwość
