@@ -47,12 +47,10 @@ export default function FactorCard({
       <div className="flex flex-wrap gap-3">
         {(status==='not_started')&&(<>
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onStart(factor.id)}>Rozpocznij wdrażanie</button>
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>{onProblem(factor.id);window.open(COMMUNITY_URL,'_blank','noopener');}}>Mam problem — potrzebuję metody</button>
-        </>)}
+          </>)}
         {(status==='in_progress')&&(<>
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 text-stone-900 font-semibold rounded-xl hover:bg-amber-500 active:scale-95 transition-all duration-200 shadow-md shadow-amber-200" onClick={()=>{onProblem(factor.id);window.open(COMMUNITY_URL,'_blank','noopener');}}>Mam problem — potrzebuję metody</button>
-        </>)}
+          </>)}
         {(status==='problem')&&(
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
         )}
