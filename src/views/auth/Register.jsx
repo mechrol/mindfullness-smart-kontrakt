@@ -5,7 +5,8 @@ import { PasswordInput } from '../../components/auth/PasswordInput.jsx';
 import { Button } from '../../components/auth/Button.jsx';
 import { Checkbox } from '../../components/auth/Checkbox.jsx';
 import Turnstile from '../../components/auth/Turnstile.jsx';
-import { useAuth, passwordStrength } from '../../contexts/AuthContext.jsx';
+import { useAuth } from '../../contexts/AuthContext.jsx';
+import { passwordStrength } from '../../services/auth.js';
 import { Link } from 'react';
 
 export default function Register({ onSwitch, onSuccess, navigate }) {

@@ -6,6 +6,7 @@ let memoryAccessToken = null;
 
 export function setAccessToken(token) { memoryAccessToken = token; }
 export function getAccessToken() { return memoryAccessToken; }
+export function clearAccessToken() { memoryAccessToken = null; }
 
 async function rawFetch(url, opts = {}) {
   const headers = new Headers(opts.headers || {});

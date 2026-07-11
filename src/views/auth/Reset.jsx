@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AuthLayout from './AuthLayout.jsx';
 import { PasswordInput } from '../../components/auth/PasswordInput.jsx';
 import { Button } from '../../components/auth/Button.jsx';
-import { passwordStrength } from '../../contexts/AuthContext.jsx';
+import { passwordStrength } from '../../services/auth.js';
 
 export default function Reset({ token, onSwitch }) {
   const [pw, setPw] = useState('');

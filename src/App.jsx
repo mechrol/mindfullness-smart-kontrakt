@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useModuleState from './hooks/useModuleState.js';
-import useIdleLogout from './hooks/useIdleLogout.js';
+import { useIdleLogout } from './hooks/useIdleLogout.js';
 import { THEMES } from './data/themes.js';
 import { generateRecommendation } from './services/foxoraApi.js';
 import { supabase } from './services/supabaseClient.js';

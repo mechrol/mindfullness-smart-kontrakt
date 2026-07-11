@@ -5,7 +5,8 @@ import { PasswordInput } from '../../components/auth/PasswordInput.jsx';
 import { Button } from '../../components/auth/Button.jsx';
 import { Checkbox } from '../../components/auth/Checkbox.jsx';
 import Turnstile from '../../components/auth/Turnstile.jsx';
-import { useAuth, normalizeAuthError, GENERIC_AUTH_ERROR } from '../../contexts/AuthContext.jsx';
+import { useAuth } from '../../contexts/AuthContext.jsx';
+import { GENERIC_AUTH_ERROR } from '../../services/auth.js';
 
 const VALID_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
