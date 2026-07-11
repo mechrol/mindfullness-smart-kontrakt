@@ -39,12 +39,10 @@ export default function FactorCard({
         <label className="block text-xs font-bold text-stone-400 uppercase tracking-wider mb-2">Twój kontekst (ograniczenia i uwagi):</label>
         <textarea className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 text-stone-700 text-sm focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-200 focus:bg-white transition-all duration-200 resize-none"
           value={userContext||''} onChange={e=>onContextChange(e.target.value)} placeholder="Opisz ograniczenia, trudności, cele, sytuację zdrowotną. Zostanie użyty w raporcie MSWRP..." rows={3} />
-        {onGenerateReport && (
-          <button className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md shadow-indigo-200 text-sm"
+        <button className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-700 active:scale-95 transition-all duration-200 shadow-md shadow-indigo-200 text-sm"
             onClick={() => onGenerateReport(factor.id, userContext)}>
-            🧩 Mam problem. Podaj mi możliwości.
+            🧩 Mam problem — potrzebuję możliwości
           </button>
-        )}
       </div>
       <div className="flex flex-wrap gap-3">
         {(status==='not_started')&&(<>
