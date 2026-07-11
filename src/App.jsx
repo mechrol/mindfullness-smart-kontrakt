@@ -84,6 +84,17 @@ export default function App() {
         </div>
       </a>
 
+      {/* Title Header */}
+      <header className="bg-white border-b border-stone-200">
+        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-xl font-extrabold text-stone-800 tracking-tight">Smart Kontrakt w Trybie Wellness</h1>
+            <p className="text-stone-400 text-xs font-medium mt-0.5">Metoda specyficzna MSWRP — Twoja droga do zdrowego stylu życia</p>
+          </div>
+          <button onClick={() => setShowSettings(true)} className="flex items-center justify-center w-10 h-10 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-500 hover:text-stone-700 transition-all duration-200 text-xl" title="Ustawienia">⚙</button>
+        </div>
+      </header>
+
       {/* Tab Navigation */}
       <nav className="bg-white border-b border-stone-200 sticky top-0 z-30 shadow-sm">
         <div className="max-w-3xl mx-auto flex">
