@@ -96,11 +96,11 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-stone-50">
       {/* PEMF Banner */}
       <a href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer"
-        className="block bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 text-white hover:from-violet-500 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group relative overflow-hidden">
+        className="block bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 text-white hover:from-violet-500 hover:via-purple-500 hover:to-indigo-600 transition-all duration-300 group relative overflow-hidden animate-gradient">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIvPjwvZz48L2c+PC9zdmc+')] opacity-50" />
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3"><span className="text-2xl">⚡</span><div><p className="font-bold text-base sm:text-lg leading-tight">Wzmocnij swój zdrowy styl życia z technologią <span className="underline decoration-2 decoration-white/40">PEMF</span></p><p className="text-violet-200 text-sm mt-0.5 hidden sm:block">Terapia polem elektromagnetycznym — odzyskaj energię, zredukuj stres, przyspiesz regenerację →</p></div></div>
-          <span className="flex-shrink-0 ml-4 px-4 py-2 bg-white text-purple-700 font-bold text-sm rounded-full group-hover:bg-violet-100 group-hover:scale-105 transition-all duration-300 shadow-lg whitespace-nowrap">Sprawdź →</span>
+          <span className="flex-shrink-0 ml-4 px-4 py-2 bg-white text-purple-700 font-bold text-sm rounded-full group-hover:bg-violet-100 group-hover:scale-105 transition-all duration-300 shadow-lg whitespace-nowrap btn-shine">Sprawdź →</span>
         </div>
       </a>
 
@@ -116,7 +116,7 @@ export default function App() {
       </header>
 
       {/* Tab Navigation */}
-      <nav className="bg-white border-b border-stone-200 sticky top-0 z-30 shadow-sm">
+      <nav className="glass border-b border-stone-200 sticky top-0 z-30 shadow-sm backdrop-blur-md">
         <div className="max-w-3xl mx-auto flex">
           {TABS.map((tab) => (
             <button

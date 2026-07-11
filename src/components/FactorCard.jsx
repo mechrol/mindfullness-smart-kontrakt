@@ -60,7 +60,7 @@ export default function FactorCard({
           <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200" onClick={()=>onDone(factor.id)}>Oznacz jako wdrożone</button>
         )}
         {/* Challenge / Community button */}
-        <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200"
+        <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-green-700 active:scale-95 transition-all duration-200 shadow-md shadow-green-200 btn-shine"
           onClick={() => {
             if (hasChallenge) {
               onShowChallenge && onShowChallenge(factor.id);
