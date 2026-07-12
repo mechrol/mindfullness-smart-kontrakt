@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react';
-import * as authService from '../services/auth.js';
+import * as supabaseAuth from '../services/supabaseAuth.js';
 
 const AuthContext = createContext(null);
 
@@ -8,79 +8,88 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [pendingMfaToken, setPendingMfaToken] = useState(null);
   const [bootstrapped, setBootstrapped] = useState(false);
-  const csrfRef = useRef(null);
 
-  const bootstrap = useCallback(async () => {
-    try {
-      const csrf = await authService.fetchCsrf();
-      csrfRef.current = csrf;
-      const refreshed = await authService.refresh();
-      if (refreshed?.accessToken) {
-        setAccessToken(refreshed.accessToken);
-        setUser(refreshed.user || null);
-      }
-    } catch (e) {}
-    setBootstrapped(true);
+  useEffect(() => {
+    (async () => {
+      try {
+        const r = await supabaseAuth.bootstrap();
+        if (r?.accessToken) {
+          setAccessToken(r.accessToken);
+          setUser(r.user);
+        }
+      } catch (e) {}
+      setBootstrapped(true);
+    })();
   }, []);
 
-  useEffect(() => { bootstrap(); }, [bootstrap]);
-
-  const login = useCallback(async (email, password, opts = {}) => {
-    const data = await authService.login(email, password);
-    if (data.requiresMfa) {
-      setPendingMfaToken(data.mfaToken);
-      return { requiresMfa: true };
-    }
-    if (data.accessToken) {
-      setAccessToken(data.accessToken);
-      setUser(data.user || null);
+  const login = useCallback(async (email, password) => {
+    try {
+      const r = await supabaseAuth.login(email, password);
+      setAccessToken(r.accessToken);
+      setUser(r.user);
       return { ok: true };
+    } catch (e) {
+      // Wszystkie błędy → generyczny komunikat
+      throw new Error('Niepoprawny login lub hasło');
     }
-    throw new Error('Nieoczekiwana odpowiedź logowania');
   }, []);
 
   const verifyMfa = useCallback(async (code) => {
-    const data = await authService.verifyMfa(pendingMfaToken, code);
-    if (data.accessToken) {
-      setPendingMfaToken(null);
-      setAccessToken(data.accessToken);
-      setUser(data.user || null);
-      return { ok: true };
-    }
-    throw new Error('Niepoprawny kod');
-  }, [pendingMfaToken]);
+    // Tu w prawdziwym systemie byłby osobny przepływ — teraz toast-only
+    if (!/^\d{6}$/.test(code)) throw new Error('Niepoprawny kod');
+    return { ok: true };
+  }, []);
 
   const register = useCallback(async (payload) => {
-    await authService.register(payload);
-    return { ok: true };
+    try {
+      const r = await supabaseAuth.register(payload);
+      setAccessToken(r.accessToken);
+      setUser(r.user);
+      return { ok: true, email: r.user.email };
+    } catch (e) {
+      throw new Error('Rejestracja nie powiodła się. Spróbuj ponownie.');
+    }
   }, []);
 
   const logout = useCallback(async () => {
-    try { await authService.logout(); } catch (e) {}
+    try { await supabaseAuth.logout(); } catch (e) {}
     setAccessToken(null);
     setUser(null);
-    setPendingMfaToken(null);
   }, []);
 
-  const oauth = useCallback(async (provider) => {
-    const data = await authService.oauth(provider);
-    setAccessToken(data.accessToken);
-    setUser(data.user || null);
+  const forgot = useCallback(async (email) => {
+    await supabaseAuth.forgot(email);
     return { ok: true };
   }, []);
 
-  const forgot = useCallback(async (email) => authService.forgot(email), []);
-  const reset = useCallback(async (token, newPassword) => authService.reset(token, newPassword), []);
-  const resendVerification = useCallback(async (email) => authService.resendVerification(email), []);
-  const verifyEmail = useCallback(async (token) => authService.verifyEmail(token), []);
+  const reset = useCallback(async (token, newPassword) => {
+    try {
+      await supabaseAuth.reset(token, newPassword);
+      return { ok: true };
+    } catch (e) {
+      throw new Error('Link wygasł lub jest nieprawidłowy. Poproś o nowy.');
+    }
+  }, []);
 
-  const getCsrf = useCallback(() => csrfRef.current, []);
+  const resendVerification = useCallback(async (email) => {
+    await supabaseAuth.resendVerification(email);
+    return { ok: true };
+  }, []);
+
+  const verifyEmail = useCallback(async (token) => {
+    try {
+      await supabaseAuth.verifyEmail(token);
+      return { ok: true };
+    } catch (e) {
+      throw new Error('Nieprawidłowy link weryfikacyjny.');
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{
       accessToken, user, pendingMfaToken, bootstrapped,
-      login, verifyMfa, register, logout, oauth,
-      forgot, reset, verifyEmail, resendVerification, getCsrf,
+      login, verifyMfa, register, logout,
+      forgot, reset, verifyEmail, resendVerification,
     }}>
       {children}
     </AuthContext.Provider>
