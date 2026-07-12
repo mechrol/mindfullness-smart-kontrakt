@@ -3,7 +3,13 @@
 // Refresh-token przechowujemy w localStorage (symulacja HttpOnly cookie).
 
 import { supabase } from './supabaseClient.js';
-import { setAccessToken } from './apiClient.js';
+
+// Local in-memory copy for use by other services. Mutated only inside this module.
+export function setAccessToken(token) {
+  if (typeof window === 'undefined') return;
+  if (token) window.__accessToken = token;
+  else window.__accessToken = null;
+}
 
 const ACCESS_TTL_MS = 10 * 60 * 1000;          // 10 min
 const REFRESH_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 dni

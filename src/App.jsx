@@ -6,7 +6,7 @@ import { generateRecommendation } from './services/foxoraApi.js';
 import { supabase } from './services/supabaseClient.js';
 import CHALLENGES from './data/challenges.js';
 import { buildMswrpReport, reportToText } from './services/mswrpReport.js';
-import { saveReportToSupabase, saveChoiceToSupabase } from './services/supabaseClient.js';
+import { saveReportToSupabase, saveChoiceToSupabase } from './services/supabaseAuth.js';
 
 import ModuleDropdown from './components/ModuleDropdown.jsx';
 import FactorDropdown from './components/FactorDropdown.jsx';
